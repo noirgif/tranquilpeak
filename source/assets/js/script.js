@@ -17770,7 +17770,7 @@ return jQuery;
     }
   };
 
-  $(document).on("ready", function() {
+  jQuery(function() {
     // launch feature only if there is an Algolia index available
     if (typeof algoliaIndex !== 'undefined') {
       var searchModal = new SearchModal();
@@ -18109,7 +18109,7 @@ return jQuery;
     }
   }
   // mobile webkit compatibility
-  $(document).on("ready", function () {
+  jQuery(function () {
     $("#snow-bringer").on('click', snow);
   });
 })(jQuery);;(function($) {
