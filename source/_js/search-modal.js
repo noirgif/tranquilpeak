@@ -26,12 +26,12 @@
       var self = this;
 
       // open modal when open button is clicked
-      self.$openButton.click(function() {
+      self.$openButton.on("click", function() {
         self.open();
       });
 
       // open modal when `s` button is pressed
-      $(document).keyup(function(event) {
+      $(document).on("keyup", function(event) {
         var target = event.target || event.srcElement;
         // exit if user is focusing an input or textarea
         var tagName = target.tagName.toUpperCase();
@@ -39,32 +39,32 @@
           return;
         }
 
-        if (event.keyCode === 83 && !self.$searchModal.is(':visible')) {
+        if (event.key === 83 && !self.$searchModal.is(':visible')) {
           self.open();
         }
       });
 
       // close button when overlay is clicked
-      self.$searchModal.click(function(e) {
+      self.$searchModal.on("click", function(e) {
         if (e.target === this) {
           self.close();
         }
       });
 
       // close modal when close button is clicked
-      self.$closeButton.click(function() {
+      self.$closeButton.on("click", function() {
         self.close();
       });
 
       // close modal when `ESC` button is pressed
-      $(document).keyup(function(e) {
-        if (e.keyCode === 27 && self.$searchModal.is(':visible')) {
+      $(document).on("keyup", function(e) {
+        if (e.key === 27 && self.$searchModal.is(':visible')) {
           self.close();
         }
       });
 
       // send search when form is submitted
-      self.$searchForm.submit(function(event) {
+      self.$searchForm.on("submit", function(event) {
         event.preventDefault();
         self.search(self.$searchInput.val());
       });
@@ -77,7 +77,7 @@
     open: function() {
       this.showSearchModal();
       this.showOverlay();
-      this.$searchInput.focus();
+      this.$searchInput.trigger("focus");
     },
 
     /**
@@ -87,7 +87,7 @@
     close: function() {
       this.hideSearchModal();
       this.hideOverlay();
-      this.$searchInput.blur();
+      this.$searchInput.trigger("blur");
     },
 
     /**
@@ -97,11 +97,9 @@
      */
     search: function(search) {
       var self = this;
-      this.algolia.search(search, function(err, content) {
-        if (!err) {
+      this.algolia.search(search).then((content) => {
           self.showResults(content.hits);
           self.showResultsCount(content.nbHits);
-        }
       });
     },
 
@@ -204,7 +202,7 @@
     }
   };
 
-  $(document).ready(function() {
+  $(document).on("ready", function() {
     // launch feature only if there is an Algolia index available
     if (typeof algoliaIndex !== 'undefined') {
       var searchModal = new SearchModal();

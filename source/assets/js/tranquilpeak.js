@@ -24,12 +24,12 @@
     run: function() {
       var self = this;
       // Detect click on open button
-      self.$openBtn.click(function(e) {
+      self.$openBtn.on("click", function(e) {
         e.preventDefault();
         self.play();
       });
       // Detect click on close button
-      self.$closeBtn.click(function(e) {
+      self.$closeBtn.on("click", function(e) {
         e.preventDefault();
         self.playBack();
       });
@@ -116,7 +116,7 @@
     }
   };
 
-  $(document).ready(function() {
+  $(document).on("ready", function() {
     var aboutCard = new AboutCard();
     aboutCard.run();
   });
@@ -157,12 +157,12 @@
     run: function() {
       var self = this;
 
-      self.$searchInput.keyup(function() {
+      self.$searchInput.on("keyup", function() {
         self.filter(self.sliceDate(self.getSearch()));
       });
 
       // Block submit action
-      self.$form.submit(function(e) {
+      self.$form.on("submit", function(e) {
         e.preventDefault();
       });
     },
@@ -274,7 +274,7 @@
     }
   };
 
-  $(document).ready(function() {
+  $(document).on("ready", function() {
     if ($('#archives').length) {
       var archivesFilter = new ArchivesFilter('#archives');
       archivesFilter.run();
@@ -322,12 +322,12 @@
     run: function() {
       var self = this;
 
-      self.$inputSearch.keyup(function() {
+      self.$inputSearch.on("keyup", function() {
         self.filter(self.getSearch());
       });
 
       // Block submit action
-      self.$form.submit(function(e) {
+      self.$form.on("submit", function(e) {
         e.preventDefault();
       });
     },
@@ -440,7 +440,7 @@
     }
   };
 
-  $(document).ready(function() {
+  $(document).on("ready", function() {
     if ($('#categories-archives').length) {
       var categoriesFilter = new CategoriesFilter('#categories-archives');
       categoriesFilter.run();
@@ -496,7 +496,7 @@
     }
   };
 
-  $(document).ready(function() {
+  $(document).on("ready", function() {
     // register jQuery function to check if an element has an horizontal scroll bar
     $.fn.hasHorizontalScrollBar = function() {
       return this.get(0).scrollWidth > this.innerWidth();
@@ -510,7 +510,7 @@
 
   // Run fancybox feature
 
-  $(document).ready(function() {
+  $(document).on("ready", function() {
     /**
      * Configure and run Fancybox plugin
      * @returns {void}
@@ -612,7 +612,7 @@
     }
   };
 
-  $(document).ready(function() {
+  $(document).on("ready", function() {
     var header = new Header();
     header.run();
   });
@@ -711,7 +711,7 @@
     }
   };
 
-  $(document).ready(function() {
+  $(document).on("ready", function() {
     if ($('.image-gallery').length) {
       var imageGallery = new ImageGallery();
 
@@ -797,7 +797,7 @@
     }
   };
 
-  $(document).ready(function() {
+  $(document).on("ready", function() {
     if ($('.post-bottom-bar').length) {
       var postBottomBar = new PostBottomBar();
       postBottomBar.run();
@@ -811,33 +811,32 @@
    * Search modal with Algolia
    * @constructor
    */
-  var SearchModal = function() {
-    this.$openButton = $('.open-algolia-search');
-    this.$searchModal = $('#algolia-search-modal');
-    this.$closeButton = this.$searchModal.find('.close-button');
-    this.$searchForm = $('#algolia-search-form');
-    this.$searchInput = $('#algolia-search-input');
-    this.$results = this.$searchModal.find('.results');
-    this.$noResults = this.$searchModal.find('.no-result');
-    this.$resultsCount = this.$searchModal.find('.results-count');
-    this.algolia = algoliaIndex;
-  };
-
-  SearchModal.prototype = {
+  class SearchModal {
+    constructor() {
+      this.$openButton = $('.open-algolia-search');
+      this.$searchModal = $('#algolia-search-modal');
+      this.$closeButton = this.$searchModal.find('.close-button');
+      this.$searchForm = $('#algolia-search-form');
+      this.$searchInput = $('#algolia-search-input');
+      this.$results = this.$searchModal.find('.results');
+      this.$noResults = this.$searchModal.find('.no-result');
+      this.$resultsCount = this.$searchModal.find('.results-count');
+      this.algolia = algoliaIndex;
+    }
     /**
      * Run feature
      * @returns {void}
      */
-    run: function() {
+    run() {
       var self = this;
 
       // open modal when open button is clicked
-      self.$openButton.click(function() {
+      self.$openButton.on("click", function () {
         self.open();
       });
 
       // open modal when `s` button is pressed
-      $(document).keyup(function(event) {
+      $(document).on("keyup", function (event) {
         var target = event.target || event.srcElement;
         // exit if user is focusing an input or textarea
         var tagName = target.tagName.toUpperCase();
@@ -845,80 +844,74 @@
           return;
         }
 
-        if (event.keyCode === 83 && !self.$searchModal.is(':visible')) {
+        if (event.key === 83 && !self.$searchModal.is(':visible')) {
           self.open();
         }
       });
 
       // close button when overlay is clicked
-      self.$searchModal.click(function(e) {
+      self.$searchModal.on("click", function (e) {
         if (e.target === this) {
           self.close();
         }
       });
 
       // close modal when close button is clicked
-      self.$closeButton.click(function() {
+      self.$closeButton.on("click", function () {
         self.close();
       });
 
       // close modal when `ESC` button is pressed
-      $(document).keyup(function(e) {
-        if (e.keyCode === 27 && self.$searchModal.is(':visible')) {
+      $(document).on("keyup", function (e) {
+        if (e.key === 27 && self.$searchModal.is(':visible')) {
           self.close();
         }
       });
 
       // send search when form is submitted
-      self.$searchForm.submit(function(event) {
+      self.$searchForm.on("submit", function (event) {
         event.preventDefault();
         self.search(self.$searchInput.val());
       });
-    },
-
+    }
     /**
      * Open search modal and display overlay
      * @returns {void}
      */
-    open: function() {
+    open() {
       this.showSearchModal();
       this.showOverlay();
-      this.$searchInput.focus();
-    },
-
+      this.$searchInput.trigger("focus");
+    }
     /**
      * Close search modal and overlay
      * @returns {void}
      */
-    close: function() {
+    close() {
       this.hideSearchModal();
       this.hideOverlay();
-      this.$searchInput.blur();
-    },
-
+      this.$searchInput.trigger("blur");
+    }
     /**
      * Search with Algolia API and display results
      * @param {String} search
      * @returns {void}
      */
-    search: function(search) {
+    search(search) {
       var self = this;
-      this.algolia.search(search, function(err, content) {
-        if (!err) {
-          self.showResults(content.hits);
-          self.showResultsCount(content.nbHits);
-        }
+      this.algolia.search(search).then((content) => {
+        self.showResults(content.hits);
+        self.showResultsCount(content.nbHits);
       });
-    },
-
+    }
     /**
      * Display results
      * @param {Array} posts
      * @returns {void}
      */
-    showResults: function(posts) {
+    showResults(posts) {
       var html = '';
-      posts.forEach(function(post) {
+      posts.forEach(function (post) {
         var lang = window.navigator.userLanguage || window.navigator.language || post.lang;
 
         html += '<div class="media">';
@@ -948,30 +941,27 @@
         html += '</div>';
       });
       this.$results.html(html);
-    },
-
+    }
     /**
      * Show search modal
      * @returns {void}
      */
-    showSearchModal: function() {
+    showSearchModal() {
       this.$searchModal.fadeIn();
-    },
-
+    }
     /**
      * Hide search modal
      * @returns {void}
      */
-    hideSearchModal: function() {
+    hideSearchModal() {
       this.$searchModal.fadeOut();
-    },
-
+    }
     /**
      * Display messages and counts of results
      * @param {Number} count
      * @returns {void}
      */
-    showResultsCount: function(count) {
+    showResultsCount(count) {
       var string = '';
       if (count < 1) {
         string = this.$resultsCount.data('message-zero');
@@ -986,31 +976,30 @@
         this.$noResults.hide();
       }
       this.$resultsCount.html(string);
-    },
-
+    }
     /**
      * Show overlay
      * @returns {void}
      */
-    showOverlay: function() {
+    showOverlay() {
       $('body').append('<div class="overlay"></div>');
       $('.overlay').fadeIn();
       $('body').css('overflow', 'hidden');
-    },
-
+    }
     /**
      * Hide overlay
      * @returns {void}
      */
-    hideOverlay: function() {
-      $('.overlay').fadeOut(function() {
+    hideOverlay() {
+      $('.overlay').fadeOut(function () {
         $(this).remove();
         $('body').css('overflow', 'auto');
       });
     }
-  };
+  }
 
-  $(document).ready(function() {
+
+  $(document).on("ready", function() {
     // launch feature only if there is an Algolia index available
     if (typeof algoliaIndex !== 'undefined') {
       var searchModal = new SearchModal();
@@ -1044,7 +1033,7 @@
       var self = this;
       
       // Detect the click on the open button
-      self.$openBtn.click(function() {
+      self.$openBtn.on("click", function() {
         if (!self.$shareOptionsBar.hasClass('opened')) {
           self.openShareOptions();
           self.$closeBtn.show();
@@ -1052,7 +1041,7 @@
       });
       
       // Detect the click on the close button
-      self.$closeBtn.click(function() {
+      self.$closeBtn.on("click", function() {
         if (self.$shareOptionsBar.hasClass('opened')) {
           self.closeShareOptions();
           self.$closeBtn.hide();
@@ -1103,7 +1092,7 @@
     }
   };
   
-  $(document).ready(function() {
+  $(document).on("ready", function() {
     var shareOptionsBar = new ShareOptionsBar();
     shareOptionsBar.run();
   });
@@ -1141,13 +1130,13 @@
     run: function() {
       var self = this;
       // Detect the click on the open button
-      this.$openBtn.click(function() {
+      this.$openBtn.on("click", function() {
         if (!self.$sidebar.hasClass('pushed')) {
           self.openSidebar();
         }
       });
       // Detect the click on close button
-      this.$closeBtn.click(function() {
+      this.$closeBtn.on("click", function() {
         if (self.$sidebar.hasClass('pushed')) {
           self.closeSidebar();
         }
@@ -1270,7 +1259,7 @@
     }
   };
 
-  $(document).ready(function() {
+  $(document).on("ready", function() {
     var sidebar = new Sidebar();
     sidebar.run();
   });
@@ -1329,7 +1318,7 @@
      */
     run: function() {
       var self = this;
-      self.$tabbedCodeBlocs.find('.tab').click(function() {
+      self.$tabbedCodeBlocs.find('.tab').on("click", function() {
         var $codeblock = $(this).parent().parent().parent();
         var $tabsContent = $codeblock.find('.tabs-content').children('pre, .highlight');
         // remove `active` css class on all tabs
@@ -1344,7 +1333,7 @@
     }
   };
 
-  $(document).ready(function() {
+  $(document).on("ready", function() {
     var tabbedCodeBlocks = new TabbedCodeBlock('.codeblock--tabbed');
     tabbedCodeBlocks.run();
   });
@@ -1385,12 +1374,12 @@
       var self = this;
 
       // Detect keystroke of the user
-      self.$inputSearch.keyup(function() {
+      self.$inputSearch.on("keyup", function() {
         self.filter(self.getSearch());
       });
 
       // Block submit action
-      self.$form.submit(function(e) {
+      self.$form.on("submit", function(e) {
         e.preventDefault();
       });
     },
@@ -1478,7 +1467,7 @@
     }
   };
 
-  $(document).ready(function() {
+  $(document).on("ready", function() {
     if ($('#tags-archives').length) {
       var tagsFilter = new TagsFilter('#tags-archives');
       tagsFilter.run();
@@ -1487,13 +1476,13 @@
 })(jQuery);
 
 // snow magic, from some plus
-(function(b){b.snowfall=function(c,d){function u(a,f,g,h,j){this.id=j;this.x=a;this.y=f;this.size=g;this.speed=h;this.step=0;this.stepSize=e(1,10)/100;d.collection&&(this.target=m[e(0,m.length-1)]);a=b(document.createElement("div")).attr({"class":"snowfall-flakes",id:"flake-"+this.id}).css({width:this.size,height:this.size,background:d.flakeColor,position:"fixed",top:this.y,left:this.x,fontSize:0,zIndex:d.flakeIndex, "overflow-y":"scroll", "-webkit-overflow-scrolling":"touch"});b(c).get(0).tagName===b(document).get(0).tagName?(b("body").append(a),c=b("body")):
+(function(b){b.snowfall=function(c,d){function u(a,f,g,h,j){this.id=j;this.x=a;this.y=f;this.size=g;this.speed=h;this.step=0;this.stepSize=e(1,10)/100;d.collection&&(this.target=m[e(0,m.length-1)]);a=b(document.createElement("div")).attr({"class":"snowfall-flakes",id:"flake-"+this.id}).css({width:this.size,height:this.size,background:d.flakeColor,position:"fixed",top:this.y,left:this.x,fontSize:0,zIndex:d.flakeIndex});b(c).get(0).tagName===b(document).get(0).tagName?(b("body").append(a),c=b("body")):
 b(c).append(a);this.element=document.getElementById("flake-"+this.id);this.update=function(){this.y+=this.speed;this.y>$(window).height()-(this.size+6)&&this.reset();this.element.style.top=this.y+"px";this.element.style.left=this.x+"px";this.step+=this.stepSize;this.x=!1===p?this.x+Math.cos(this.step):this.x+(p+Math.cos(this.step));if(d.collection&&this.x>this.target.x&&this.x<this.target.width+this.target.x&&this.y>this.target.y&&this.y<this.target.height+this.target.y){var b=this.target.element.getContext("2d"),
 a=this.x-this.target.x,c=this.y-this.target.y,e=this.target.colData;if(void 0!==e[parseInt(a)][parseInt(c+this.speed+this.size)]||c+this.speed+this.size>this.target.height)if(c+this.speed+this.size>this.target.height){for(;c+this.speed+this.size>this.target.height&&0<this.speed;)this.speed*=0.5;b.fillStyle="#fff";void 0==e[parseInt(a)][parseInt(c+this.speed+this.size)]?(e[parseInt(a)][parseInt(c+this.speed+this.size)]=1,b.fillRect(a,c+this.speed+this.size,this.size,this.size)):(e[parseInt(a)][parseInt(c+
 this.speed)]=1,b.fillRect(a,c+this.speed,this.size,this.size));this.reset()}else this.speed=1,this.stepSize=0,parseInt(a)+1<this.target.width&&void 0==e[parseInt(a)+1][parseInt(c)+1]?this.x++:0<parseInt(a)-1&&void 0==e[parseInt(a)-1][parseInt(c)+1]?this.x--:(b.fillStyle="#fff",b.fillRect(a,c,this.size,this.size),e[parseInt(a)][parseInt(c)]=1,this.reset())}(this.x>l-i||this.x<i)&&this.reset()};this.reset=function(){this.y=0;this.x=e(i,l-i);this.stepSize=e(1,10)/100;this.size=e(100*d.minSize,100*d.maxSize)/
-100;this.speed=e(d.minSpeed,d.maxSpeed)}}function r(){for(a=0;a<j.length;a+=1)j[a].update();s=setTimeout(function(){r()},30)}var d=b.extend({flakeCount:35,flakeColor:"#ff" + (parseInt("ffff",16) - 0x1010 * d.snowClickCount).toString(16),flakeIndex:999999,minSize:1,maxSize:2,minSpeed:1,maxSpeed:5,round:!1,shadow:!1,collection:!1,collectionHeight:40,deviceorientation:!1},d),e=function(a,b){return Math.round(a+Math.random()*(b-a))};b(c).data("snowfall",this);var j=[],f=0,a=0,n=b(c).height(),l=b(c).width(),i=0,s=0;if(!1!==d.collection)if(f=document.createElement("canvas"),
+100;this.speed=e(d.minSpeed,d.maxSpeed)}}function r(){for(a=0;a<j.length;a+=1)j[a].update();s=setTimeout(function(){r()},30)}var d=b.extend({flakeCount:35,flakeColor:"#ff" + (parseInt("ffff",16) - 0x1010 * d.snowClickCount).toString(16),flakeIndex:999999,minSize:1,maxSize:2,minSpeed:1,maxSpeed:5,round:1,shadow:!1,collection:!1,collectionHeight:40,deviceorientation:!1},d),e=function(a,b){return Math.round(a+Math.random()*(b-a))};b(c).data("snowfall",this);var j=[],f=0,a=0,n=b(c).height(),l=b(c).width(),i=0,s=0;if(!1!==d.collection)if(f=document.createElement("canvas"),
 f.getContext&&f.getContext("2d"))for(var m=[],f=b(d.collection),k=d.collectionHeight,a=0;a<f.length;a++){var g=f[a].getBoundingClientRect(),h=document.createElement("canvas"),t=[];if(0<g.top-k){document.body.appendChild(h);h.style.position="absolute";h.height=k;h.width=g.width;h.style.left=g.left+"px";h.style.top=g.top-k+"px";for(var q=0;q<g.width;q++)t[q]=[];m.push({element:h,x:g.left,y:g.top-k,width:g.width,height:k,colData:t})}}else d.collection=!1;b(c).get(0).tagName===b(document).get(0).tagName&&
-(i=25);b(window).bind("resize",function(){n=b(c).height();l=b(c).width()});for(a=0;a<d.flakeCount;a+=1)f=j.length,j.push(new u(e(i,l-i),e(0,n),e(100*d.minSize,100*d.maxSize)/100,e(d.minSpeed,d.maxSpeed),f));d.round&&b(".snowfall-flakes").css({"-moz-border-radius":d.maxSize,"-webkit-border-radius":d.maxSize,"border-radius":d.maxSize});d.shadow&&b(".snowfall-flakes").css({"-moz-box-shadow":"1px 1px 1px #555","-webkit-box-shadow":"1px 1px 1px #555","box-shadow":"1px 1px 1px #555"});var p=!1;d.deviceorientation&&
+(i=25);b(window).on("resize",function(){n=b(c).height();l=b(c).width()});for(a=0;a<d.flakeCount;a+=1)f=j.length,j.push(new u(e(i,l-i),e(0,n),e(100*d.minSize,100*d.maxSize)/100,e(d.minSpeed,d.maxSpeed),f));d.round&&b(".snowfall-flakes").css({"-moz-border-radius":"50%","-webkit-border-radius":"50%","border-radius":"50%"});d.shadow&&b(".snowfall-flakes").css({"-moz-box-shadow":"1px 1px 1px #555","-webkit-box-shadow":"1px 1px 1px #555","box-shadow":"1px 1px 1px #555"});var p=!1;d.deviceorientation&&
 b(window).on("deviceorientation",function(a){p=0.1*a.originalEvent.gamma});r();this.clear=function(){b(c).children(".snowfall-flakes").remove();j=[];clearTimeout(s)}};b.fn.snowfall=function(c){if("object"==typeof c||void 0==c)return this.each(function(){new b.snowfall(this,c)});if("string"==typeof c)return this.each(function(){var c=b(this).data("snowfall");c&&c.clear()})}})(jQuery);
 
 var snowClickCount = 0;
@@ -1513,6 +1502,6 @@ function snow()
 }
 }
 // mobile webkit compatibility
-$(document).ready(function () {
+$(document).on("ready", function () {
 $(".sidebar-profile-name").css('cursor', 'pointer');
 $(".sidebar-profile-name").on('click', snow);});
