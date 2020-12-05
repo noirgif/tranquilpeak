@@ -1,5 +1,5 @@
 # date format displayed everywhere in the blog
-# date_format: "MMM DD, YYYY"
+date_format: "MMM DD, YYYY"
 
 global:
     home: "Home"
@@ -11,7 +11,6 @@ global:
     search: "Search"
     about: "About"
     author_picture: "Author's picture"
-    friend_link: "Friend links"
     github: "GitHub"
     stack_overflow: "Stack Overflow"
     twitter: "Twitter"
@@ -44,13 +43,18 @@ global:
         other: "{n} posts found"
     categories_found:
         zero: "no category found"
-        one: "1 cartegory found"
+        one: "1 category found"
         other: "{n} categories found"
     tags_found:
         zero: "no tag found"
         one: "1 tag found"
         other: "{n} tags found"
     rss_link: /en/rss.xml
+    read_more_about_author: "Read more about the author"
+    zoom_in_on_picture: "Zoom in on the picture"
+    go_to_homepage: "Go to homepage"
+    open_link: "Open the link"
+    open_post: "Open the post"
 
 pagination:
     page: "page %d"

@@ -34,13 +34,13 @@ function displayCategoriesAndPosts(category) {
         html += post.title || '(' + __('post.no_title') + ')';
         html += '</a>';
         html += '<span class="archive-post-date">';
-        html += ' - ' + post.date.locale(page.lang).format("LL");
+        html += ' - ' + post.date.locale(page.lang).format(__('date_format'));
         html += '</span>';
         html += '</li>';
     });
     if (childCategories.length > 0) {
         // recursive iteration on its child categories
-        childCategories.forEach(function(childCategory) {
+        childCategories.sort('name', 'asc').forEach(function(childCategory) {
             // clone parents of current category to its child category
             childCategory.parents = category.parents.slice();
             // add current category to the parent of current child category
@@ -80,7 +80,7 @@ function displayCategories(category) {
     if (childCategories.length > 0) {
         html += '<ul style="margin-bottom:0;">';
         // recursive iteration on its child categories
-        childCategories.forEach(function(childCategory) {
+        childCategories.sort('name', 'asc').forEach(function(childCategory) {
             // clone parents of current category to its child category
             childCategory.parents = category.parents.slice();
             // add current category to the parent of current child category

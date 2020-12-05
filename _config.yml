@@ -48,7 +48,7 @@ sidebar:
             icon: fa fa-archive
         search:
             title: global.search
-            url: /#search
+            url: "#search"
             icon: fa fa-search
             # `open-algolia-search` classes are used to open algolia search modal
             class: open-algolia-search
@@ -61,34 +61,34 @@ sidebar:
             url: /links
             icon: fa fa-link
     author_links:
-        #github:
-        #    title: global.github
-        #    url: https://github.com/noirgif
-        #    icon: fab fa-github
-        #stack_overflow:
-        #    title: global.stack_overflow
-        #    url: http://stackoverflow.com/users
-        #    icon: fab fa-stack-overflow
-        #twitter:
-        #    title: global.twitter
-        #    url: https://twitter.com/
-        #    icon: fab fa-twitter
-        #facebook:
-        #    title: global.facebook
-        #    url: https://facebook.com/
-        #    icon: fab fa-facebook
-        #google_plus:
-        #    title: global.google_plus
-        #    url: https://plus.google.com/
-        #    icon: fab fa-google-plus
-        #linked_in:
-        #    title: global.linkedin
-        #    url: https://www.linkedin.com/profile/
-        #    icon: fab fa-linkedin
-        #mail:
-        #    title: global.mail
-        #    url: mailto
-        #    icon: fa fa-envelope
+        github:
+            title: global.github
+            url: https://github.com/
+            icon: fab fa-github
+        stack_overflow:
+            title: global.stack_overflow
+            url: http://stackoverflow.com/users
+            icon: fab fa-stack-overflow
+        twitter:
+            title: global.twitter
+            url: https://twitter.com/
+            icon: fab fa-twitter
+        facebook:
+            title: global.facebook
+            url: https://facebook.com/
+            icon: fab fa-facebook
+        google_plus:
+            title: global.google_plus
+            url: https://plus.google.com/
+            icon: fab fa-google-plus
+        linked_in:
+            title: global.linkedin
+            url: https://www.linkedin.com/profile/
+            icon: fab fa-linkedin
+        mail:
+            title: global.mail
+            url: mailto
+            icon: fa fa-envelope
     rss:
         rss:
             title: global.rss
@@ -205,13 +205,42 @@ gitment:
     client_id:
     # Your client secret:
     client_secret:
+    # The attribute of posts to use to link them to GitHub issues.
+    # See all attributes: https://hexo.io/docs/variables#Page-Variables
+    # `path` is recommended because the identifier needs to be unique and shorter than 50 characters.
+    post_identifier: permalink
+
+# Your Gitalk information
+# Read https://github.com/gitalk/gitalk#options to set up Gitalk
+gitalk:
+    # Switch
+    enable: false
+    # Your client ID:
+    client_id:
+    # Your client secret:
+    client_secret:
+    # Your Github ID (Github username):
+    owner:
+    # The repo to store comments:
+    repo:
+    # The attribute of posts to use to link them to GitHub issues.
+    # See all attributes: https://hexo.io/docs/variables#Page-Variables
+    # `path` is recommended because the identifier needs to be unique and shorter than 50 characters.
+    post_identifier: path
+    # See all options: https://github.com/gitalk/gitalk#options
+    options:
+        language: "en"
+        perPage: 10
+        distractionFreeMode: false
+        enableHotKey: true
+        pagerDirection: "first"
 
 # -------------------
 # Integrated services
 # -------------------
 
 # Your Google analystics web property ID : UA-XXXXX-X
-google_analytics_id: UA-130692370-1
+google_analytics_id:
 # Your Baidu analystics web property ID : 9505a5af654a2478f93fd6c0ae4f687d
 baidu_analytics_id:
 # Your Gravatar email. Overwrite `author.picture` everywhere in the blog
@@ -253,7 +282,14 @@ sharing_options:
     google_plus:
         icon: "fab fa-google-plus"
         url: "https://plus.google.com/share?url={{post.permalink}}"
-    # Asian social networks
+# Business Social Networks
+#    linkedin:
+#        icon: "fab fa-linkedin"
+#        url: "https://www.linkedin.com/shareArticle?mini=true&url={{post.permalink}}"
+#    xing:
+#        icon: "fab fa-xing"
+#        url: "https://www.xing.com/spi/shares/new?url={{post.permalink}}"
+# Asian social networks
 #    weibo:
 #        title: "Weibo"
 #        icon: "fab fa-weibo"
@@ -270,7 +306,7 @@ sharing_options:
 #        title: "Renren"
 #        icon: "fab fa-renren"
 #        url: "http://widget.renren.com/dialog/share?resourceUrl={{post.permalink}}"
-    # Russian social networks
+# Russian social networks
 #    vk:
 #        title: "VK"
 #        icon: "fab fa-vk"
