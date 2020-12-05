@@ -97,7 +97,7 @@
      */
     search: function(search) {
       var self = this;
-      this.algolia.search(search).then((content) => {
+      this.algolia.search(search).then(function(content) {
           self.showResults(content.hits);
           self.showResultsCount(content.nbHits);
       });

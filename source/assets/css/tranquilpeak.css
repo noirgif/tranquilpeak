@@ -3,43 +3,47 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: local("Open Sans"), local("OpenSans"), url(https://fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3SZ2oysoEQEeKwjgmXLRnTc.ttf) format("truetype"); }
+  src: local("Open Sans"), local("OpenSans"), url(../fonts/open-sans.ttf) format("truetype"); }
 
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
-  src: local("Open Sans Bold"), local("OpenSans-Bold"), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzJS3E-kSBmtLoNJPDtbj2Pk.ttf) format("truetype"); }
+  src: local("Open Sans Bold"), local("OpenSans-Bold"), url(../fonts/open-sans-bold.ttf) format("truetype"); }
 
 @font-face {
   font-family: 'Merriweather';
   font-style: normal;
   font-weight: 300;
-  src: local("Merriweather Light"), local("Merriweather-Light"), url(https://fonts.gstatic.com/s/merriweather/v8/ZvcMqxEwPfh2qDWBPxn6nk7nEl83IKQRaQwpv_tz1Eg.ttf) format("truetype"); }
+  src: local("Merriweather Light"), local("Merriweather-Light"), url(../fonts/merriweather-light.ttf) format("truetype"); }
 
 @font-face {
   font-family: 'Merriweather';
   font-style: normal;
   font-weight: 400;
-  src: local("Merriweather"), url(https://fonts.gstatic.com/s/merriweather/v8/RFda8w1V0eDZheqfcyQ4EJS3E-kSBmtLoNJPDtbj2Pk.ttf) format("truetype"); }
+  src: local("Merriweather"), url(../fonts/merriweather.ttf) format("truetype"); }
 
 @font-face {
   font-family: 'Merriweather';
   font-style: normal;
   font-weight: 700;
-  src: local("Merriweather Bold"), local("Merriweather-Bold"), url(https://fonts.gstatic.com/s/merriweather/v8/ZvcMqxEwPfh2qDWBPxn6nv83cGrqhiQgWmjXfohD0fc.ttf) format("truetype"); }
+  src: local("Merriweather Bold"), local("Merriweather-Bold"), url(../fonts/merriweather-bold.ttf) format("truetype"); }
 
 @font-face {
   font-family: 'Merriweather';
   font-style: italic;
   font-weight: 300;
-  src: local("Merriweather Light Italic"), local("Merriweather-LightItalic"), url(https://fonts.gstatic.com/s/merriweather/v8/EYh7Vl4ywhowqULgRdYwIGrKw6K5wsYdxr6rUL2ZGaM.ttf) format("truetype"); }
+  src: local("Merriweather Light Italic"), local("Merriweather-LightItalic"), url(../fonts/merriweather-light-italic.ttf) format("truetype"); }
 
 @font-face {
   font-family: 'Merriweather';
   font-style: italic;
   font-weight: 700;
-  src: local("Merriweather Bold Italic"), local("Merriweather-BoldItalic"), url(https://fonts.gstatic.com/s/merriweather/v8/EYh7Vl4ywhowqULgRdYwII1kRdeHIFWYEsp6A2f99b0.ttf) format("truetype"); }
+  src: local("Merriweather Bold Italic"), local("Merriweather-BoldItalic"), url(../fonts/merriweather-bold-italic.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'hymmnos';
+  src: local("hymmnos") format("truetype"); }
 
 html {
   font-family: "Open Sans", sans-serif;
@@ -215,6 +219,9 @@ blockquote {
   h6 {
     font-size: 1.45rem; } }
 
+div.hymmnos, span.hymmnos {
+  font-family: hymmnos; }
+
 #about {
   display: none;
   position: fixed;
@@ -227,6 +234,7 @@ blockquote {
   line-height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  cursor: pointer;
   z-index: 30; }
   #about #about-card {
     position: relative;
@@ -237,6 +245,7 @@ blockquote {
     margin: 15px auto;
     border-radius: 3px;
     padding: 30px 0;
+    cursor: initial;
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); }
@@ -1577,6 +1586,10 @@ figure.highlight,
   float: right;
   margin: 2px; }
 
+.figure .fig-video {
+  width: 100%;
+  height: auto; }
+
 .figure.fig-20 {
   width: calc(20% - 4px); }
 
@@ -1966,7 +1979,7 @@ a.fancybox {
     z-index: 42; }
     .post-actions-wrap ul.post-action-nav li.post-action {
       float: left;
-      min-width: 42px; }
+      min-width: 45px; }
       .post-actions-wrap ul.post-action-nav li.post-action:last-child .post-action-btn {
         margin-left: 15px; }
   .post-actions-wrap ul.post-action-share {
@@ -2252,7 +2265,7 @@ a.fancybox {
   .postShorten.postShorten--thumbnailimg-bottom .postShorten-wrap {
     display: block;
     width: 100%; }
-  .postShorten.postShorten--thumbnailimg-bottom .postShorten-excerpt > p {
+  .postShorten.postShorten--thumbnailimg-bottom .postShorten-excerpt > p:last-of-type {
     margin-bottom: 0; }
   .postShorten.postShorten--thumbnailimg-bottom .postShorten-thumbnailimg {
     display: block;
@@ -2260,8 +2273,10 @@ a.fancybox {
     overflow: hidden;
     margin: 15px 0 15px 0; }
     .postShorten.postShorten--thumbnailimg-bottom .postShorten-thumbnailimg img {
-      width: auto;
-      height: auto; } }
+      width: 100%;
+      height: auto;
+      max-height: 250px;
+      object-fit: cover; } }
 
 .share-options-bar {
   position: fixed;
@@ -2269,6 +2284,7 @@ a.fancybox {
   background: white;
   height: 100%;
   clear: both;
+  box-sizing: border-box;
   border-top: 1px solid #eef2f8;
   transition: transform .25s ease-in-out;
   z-index: 50;
@@ -3279,3 +3295,54 @@ figure.highlight,
 
 }
 */
+.editor-stage .snow {
+  height: 50px;
+  background: #fff; }
+
+.snow {
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  background: none;
+  background-image: url("https://s3-eu-west-1.amazonaws.com/static-ressources/s1.png"), url("https://s3-eu-west-1.amazonaws.com/static-ressources/s2.png"), url("https://s3-eu-west-1.amazonaws.com/static-ressources/s3.png");
+  z-index: 100;
+  -webkit-animation: snow 10s linear infinite;
+  -moz-animation: snow 10s linear infinite;
+  -ms-animation: snow 10s linear infinite;
+  animation: snow 10s linear infinite; }
+
+@keyframes snow {
+  0% {
+    background-position: 0px 0px, 0px 0px, 0px 0px; }
+  50% {
+    background-position: 500px 500px, 100px 200px, -100px 150px; }
+  100% {
+    background-position: 500px 1000px, 200px 400px, -100px 300px; } }
+
+@-moz-keyframes snow {
+  0% {
+    background-position: 0px 0px, 0px 0px, 0px 0px; }
+  50% {
+    background-position: 500px 500px, 100px 200px, -100px 150px; }
+  100% {
+    background-position: 400px 1000px, 200px 400px, 100px 300px; } }
+
+@-webkit-keyframes snow {
+  0% {
+    background-position: 0px 0px, 0px 0px, 0px 0px; }
+  50% {
+    background-position: 500px 500px, 100px 200px, -100px 150px; }
+  100% {
+    background-position: 500px 1000px, 200px 400px, -100px 300px; } }
+
+@-ms-keyframes snow {
+  0% {
+    background-position: 0px 0px, 0px 0px, 0px 0px; }
+  50% {
+    background-position: 500px 500px, 100px 200px, -100px 150px; }
+  100% {
+    background-position: 500px 1000px, 200px 400px, -100px 300px; } }
