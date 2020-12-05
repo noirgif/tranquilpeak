@@ -82,8 +82,7 @@ post:
 
 author:
     # Your biography (Markdown and HTML supported)
-    bio: 'A progamer.
-        <div id="snow-bringer" style="cursor: pointer;"> (click me to see some <i class="far fa-snowflake"></i>)</div>'
+    bio: 'A progamer.<div id="snow-bringer" style="cursor: pointer;"> (click me to see some <i class="far fa-snowflake"></i>)</div>'
     # Your job
     job: "Student(probably)"
 
