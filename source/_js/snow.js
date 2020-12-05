@@ -39,7 +39,7 @@
     }
   }
   // mobile webkit compatibility
-  $(document).on("ready", function () {
+  jQuery(function () {
     $("#snow-bringer").on('click', snow);
   });
 })(jQuery);
