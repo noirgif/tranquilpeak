@@ -42,8 +42,8 @@
   src: local("Merriweather Bold Italic"), local("Merriweather-BoldItalic"), url(../fonts/merriweather-bold-italic.ttf) format("truetype"); }
 
 @font-face {
-  font-family: 'hymmnos';
-  src: local("hymmnos") format("truetype"); }
+  font-family: 'Hymmnos';
+  src: local("hymmnos"), url(../fonts/hymmnos.ttf) format("truetype"); }
 
 html {
   font-family: "Open Sans", sans-serif;
@@ -218,9 +218,6 @@ blockquote {
     font-size: 1.55rem; }
   h6 {
     font-size: 1.45rem; } }
-
-div.hymmnos, span.hymmnos {
-  font-family: hymmnos; }
 
 #about {
   display: none;
