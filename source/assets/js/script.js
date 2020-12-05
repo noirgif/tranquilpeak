@@ -18110,8 +18110,7 @@ return jQuery;
   }
   // mobile webkit compatibility
   $(document).on("ready", function () {
-    $(".sidebar-profile-name").css('cursor', 'pointer');
-    $(".sidebar-profile-name").on('click', snow);
+    $("#snow-bringer").on('click', snow);
   });
 })(jQuery);;(function($) {
   'use strict';
