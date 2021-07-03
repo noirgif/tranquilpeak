@@ -29,6 +29,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run: git checkout -b build || git checkout build
+      - run: git pull
       - run: npm run prod
 
       - run: git config --global user.email "nomaru@outlook.com"
@@ -46,6 +47,7 @@ jobs:
             git clone git@github.com:noirgif/blog
             cd blog
             git submodule update --init
-            git submodule foreach git pull origin build
+            git submodule foreach git fetch origin build
+            git submodule foreach git branch -f build origin/build
             git commit -am "Update dependencies"
             git push
