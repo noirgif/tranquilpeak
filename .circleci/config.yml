@@ -21,7 +21,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - build:
+      - actually_build:
         - run: git checkout -b build
         - run: npm run prod
 
