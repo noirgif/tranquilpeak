@@ -28,7 +28,7 @@ jobs:
       - run: git config --global user.name "noirgif(circleci)"
       - add_ssh_keys:
           fingerprints:
-            - "08:1b:c0:8c:b3:c1:6b:24:17:8d:7c:3f:a1:a4:66:a9"
+            - "d3:15:02:72:f5:16:05:4a:0a:dc:76:bc:2a:8d:4b:3e"
       
       - run: git commit -am "Build by circleci"
       - run: git push origin --set-upstream build
