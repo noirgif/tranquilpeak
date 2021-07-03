@@ -30,4 +30,5 @@ jobs:
           fingerprints:
             - "08:1b:c0:8c:b3:c1:6b:24:17:8d:7c:3f:a1:a4:66:a9"
       
-      = run: git push origin --set-upstream build
+      - run: git -am "Build by circleci"
+      - run: git push origin --set-upstream build
