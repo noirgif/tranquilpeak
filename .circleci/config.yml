@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - run: |
-            if [ "$CIRCLE_BRANCH" ~= "master" ]; then
+            if [[ "$CIRCLE_BRANCH" != "master" ]]; then
                 circleci-agent step halt
             fi
       - checkout
