@@ -1,5 +1,9 @@
 version: 2
 jobs:
+  branches:
+    only:
+      - master
+
   build:
     docker:
       - image: circleci/node:11.14.0-stretch
@@ -8,11 +12,6 @@ jobs:
 
     steps:
       - checkout
-
-      - run: |
-        if [ "$CIRCLE_BRANCH" != "master" ]; then
-            circleci-agent step halt
-        fi
 
       - restore_cache:
           keys:
