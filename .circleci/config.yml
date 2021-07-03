@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:11.14.0-stretch
+    
+    working_directory: ~/blog
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+
+      - run: npm install --save
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run: git checkout -b build
+      - run: npm run prod
+
+      - run: git config --global user.email "nomaru@outlook.com"
+      - run: git config --global user.name "noirgif(circleci)"
+      - add_ssh_keys:
+          fingerprints:
+            - "08:1b:c0:8c:b3:c1:6b:24:17:8d:7c:3f:a1:a4:66:a9"
+      
+      = run: git push origin --set-upstream build
