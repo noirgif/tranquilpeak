@@ -10,6 +10,10 @@ jobs:
     working_directory: ~/blog
 
     steps:
+      - run: |
+            if [ "$CIRCLE_BRANCH" ~= "master" ]; then
+                circleci-agent step halt
+            fi
       - checkout
 
       - restore_cache:
@@ -34,7 +38,7 @@ jobs:
             - "d3:15:02:72:f5:16:05:4a:0a:dc:76:bc:2a:8d:4b:3e"
       
       - run: git commit -am "Build by circleci"
-      - run: git push origin --set-upstream build
+      - run: git push origin -f --set-upstream build
 
       - run: git clone git@github.com:noirgif/blog && cd blog
       - run: git submodule foreach git pull origin build
