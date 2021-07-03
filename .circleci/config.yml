@@ -47,6 +47,6 @@ jobs:
             cd blog
             git submodule update --init
             git submodule foreach git fetch origin build
-            git submodule foreach git branch -f build origin/build
+            git submodule foreach git checkout origin/build
             git commit -am "Update dependencies"
             git push
