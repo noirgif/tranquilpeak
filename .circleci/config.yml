@@ -28,7 +28,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: git checkout -b build || git checkout build
       - run: npm run prod
 
       - run: git config --global user.email "nomaru@outlook.com"
@@ -36,17 +35,12 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "d3:15:02:72:f5:16:05:4a:0a:dc:76:bc:2a:8d:4b:3e"
-      
-      - run: git commit -am "Build by circleci"
-      - run: git push origin -f --set-upstream build
 
       - run: |
             cd ..
             rm -rf blog
-            git clone git@github.com:noirgif/blog
+            git clone git@github.com:noirgif/blog --recursive
             cd blog
-            git submodule update --init
-            git submodule foreach git fetch origin build
-            git submodule foreach git checkout origin/build
-            git commit -am "Update dependencies"
+            git submodule foreach checkout master
+            git commit -am "Update dependency"
             git push
