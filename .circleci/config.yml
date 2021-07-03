@@ -41,6 +41,6 @@ jobs:
             rm -rf blog
             git clone git@github.com:noirgif/blog --recursive
             cd blog
-            git submodule foreach checkout master
+            git submodule foreach git checkout master
             git commit -am "Update dependency"
             git push
