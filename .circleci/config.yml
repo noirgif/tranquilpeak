@@ -45,7 +45,7 @@ jobs:
             rm -rf blog
             git clone git@github.com:noirgif/blog
             cd blog
-            git submodule foreach git pull origin
-            git submodule foreach git checkout build
+            git submodule update --init
+            git submodule foreach git pull origin build
             git commit -am "Update dependencies"
             git push
