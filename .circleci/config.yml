@@ -29,7 +29,6 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run: git checkout -b build || git checkout build
-      - run: git pull
       - run: npm run prod
 
       - run: git config --global user.email "nomaru@outlook.com"
