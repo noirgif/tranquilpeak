@@ -21,8 +21,9 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: git checkout -b build
-      - run: npm run prod
+      - build:
+        - run: git checkout -b build
+        - run: npm run prod
 
       - run: git config --global user.email "nomaru@outlook.com"
       - run: git config --global user.name "noirgif(circleci)"
@@ -30,5 +31,10 @@ jobs:
           fingerprints:
             - "08:1b:c0:8c:b3:c1:6b:24:17:8d:7c:3f:a1:a4:66:a9"
       
-      - run: git -am "Build by circleci"
+      - run: git commit -am "Build by circleci"
       - run: git push origin --set-upstream build
+
+      - trigger_blog_build:
+        - run: git clone git@github.com:noirgif/blog && cd blog
+        - run: git submodule foreach git pull origin build
+        - run: git push
