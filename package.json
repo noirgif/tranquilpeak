@@ -52,7 +52,7 @@
     "@fancyapps/fancybox": "*",
     "@fortawesome/fontawesome-free": "*",
     "algoliasearch": "*",
-    "gitalk": "*",
+    "follow-redirects": "^1.15.2",
     "gitment": "*",
     "hexo-util": "*",
     "jquery": "*",
