@@ -6831,7 +6831,7 @@ body.compensate-for-scrollbar {
   src: local("umamusume"), url(../fonts/umamusume.ttf) format("truetype"); }
 
 html {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   font-size: 10px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -6845,7 +6845,7 @@ body {
   margin: 0;
   padding: 0;
   background: white;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   font-size: 1.6rem;
   line-height: 1.9em;
   letter-spacing: 0.01em;
@@ -6861,7 +6861,7 @@ h4,
 h5,
 h6 {
   letter-spacing: -0.04em;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   font-weight: 700;
   line-height: 1.45em;
   color: #4a4a4a; }
@@ -7429,7 +7429,7 @@ blockquote {
       transform: translate3d(75px, 0, 0); } }
 
 #sidebar {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   height: 100%;
   position: fixed;
   top: 0;
@@ -8237,7 +8237,7 @@ blockquote {
 
 .caption {
   display: block;
-  font-family: "Merriweather", "Noto Serif", "Noto Serif CJK SC", serif;
+  font-family: "Merriweather", "Times New Roman", "HYXinRenWenSongW", "MS PMincho", "YuMincho", "Noto Serif", serif;
   font-size: 1.3rem;
   color: #81929d;
   text-align: center;
@@ -8489,7 +8489,7 @@ figure.highlight,
     position: absolute;
     bottom: 0;
     width: calc(100% - (1.5em) * 2);
-    font-family: "Open Sans";
+    font-family: "Open Sans", "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
     font-style: italic;
     background: rgba(0, 0, 0, 0.75);
     font-size: 1.3rem;
@@ -8699,7 +8699,7 @@ a.fancybox {
       text-decoration: none; }
   .post .post-meta {
     line-height: 1.5em;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Open Sans", "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
     font-size: 1.3rem;
     font-weight: 400;
     color: #9eabb3; }
@@ -8708,7 +8708,7 @@ a.fancybox {
   .post .post-content {
     text-rendering: optimizelegibility;
     letter-spacing: -0.3px;
-    font-family: "Merriweather", "Noto Serif", "Noto Serif CJK SC", serif;
+    font-family: "Merriweather", "Times New Roman", "HYXinRenWenSongW", "MS PMincho", "YuMincho", "Noto Serif", serif;
     color: #5d686f;
     margin-top: 20px;
     font-weight: 400;
@@ -8839,7 +8839,7 @@ a.fancybox {
         text-decoration: none; }
     .post-header-cover .post-header .post-meta {
       max-width: 750px;
-      font-family: "Open Sans", sans-serif;
+      font-family: "Open Sans", "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
       font-size: 1.6rem;
       color: white !important;
       font-weight: 400;
@@ -8987,14 +8987,14 @@ a.fancybox {
   .postShorten .postShorten-meta,
   .postShorten .postShorten-readingtime,
   .postShorten .postShorten-excerpt_link {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Open Sans", "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
     font-size: 1.3rem;
     font-weight: 400; }
   .postShorten .postShorten-excerpt,
   .postShorten .postShorten-content {
     text-rendering: optimizelegibility;
     letter-spacing: -0.3px;
-    font-family: "Merriweather", "Noto Serif", "Noto Serif CJK SC", serif;
+    font-family: "Merriweather", "Times New Roman", "HYXinRenWenSongW", "MS PMincho", "YuMincho", "Noto Serif", serif;
     color: #5d686f;
     font-weight: 400;
     overflow: hidden;
@@ -9266,7 +9266,7 @@ a.tag--small,
   color: #349ef3 !important; }
 
 .font-merryweather {
-  font-family: "Merriweather", "Noto Serif", "Noto Serif CJK SC", serif; }
+  font-family: "Merriweather", "Times New Roman", "HYXinRenWenSongW", "MS PMincho", "YuMincho", "Noto Serif", serif; }
 
 .tooltip, [data-tooltip] {
   position: relative;

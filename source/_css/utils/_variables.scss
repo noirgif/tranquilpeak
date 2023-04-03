@@ -2,9 +2,9 @@
 // --------------------------------------------
 
 // Font families
-$open-sans:            'Open Sans';
-$open-sans-sans-serif: 'Open Sans', sans-serif;
-$merriweather-serif:   'Merriweather', 'Noto Serif', 'Noto Serif CJK SC', serif;
+$open-sans:            'Open Sans', 'MS Sans Serif', 'Noto Sans SC';
+$open-sans-sans-serif: "Open Sans", "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+$merriweather-serif:   'Merriweather', "Times New Roman", "HYXinRenWenSongW", "MS PMincho", "YuMincho", "Noto Serif", serif;
 $monospace:             Menlo, Consolas, monospace;
 
 $font-family-base: $open-sans-sans-serif;
@@ -15,7 +15,7 @@ $font-families: (
    // components
    'code':              $monospace,
    'caption':           $merriweather-serif,
-   'image-gallery':     $open-sans,
+   'image-gallery':     $open-sans-sans-serif,
    'post-header-cover': $merriweather-serif,
    'post-meta':         $open-sans-sans-serif,
    'post-content':      $merriweather-serif,
