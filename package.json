@@ -52,7 +52,6 @@
     "@fancyapps/fancybox": "*",
     "@fortawesome/fontawesome-free": "*",
     "algoliasearch": "*",
-    "follow-redirects": "^1.15.2",
     "gitment": "*",
     "hexo-util": "*",
     "jquery": "*",
@@ -60,7 +59,7 @@
     "moment": "*",
     "react": "*",
     "react-dom": "*",
-    "strip-indent": "*"
+    "strip-indent": "3.0.0"
   },
   "engines": {
     "node": ">=10"
