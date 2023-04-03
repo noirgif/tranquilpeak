@@ -49,6 +49,10 @@
   font-family: 'Umamusume';
   src: local("umamusume"), url(../fonts/umamusume.ttf) format("truetype"); }
 
+@font-face {
+  font-family: 'HYXinRenWenSongW';
+  src: local("HYXinRenWenSongW"), url(../fonts/HYXinRenWenSongW.ttf) format("truetype"); }
+
 html {
   font-family: "Open Sans", "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   font-size: 10px;
