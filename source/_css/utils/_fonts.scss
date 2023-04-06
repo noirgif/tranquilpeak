@@ -3,6 +3,7 @@
     font-style:  normal;
     font-weight: 400;
     src:         local('Open Sans'), local('OpenSans'), url(../fonts/open-sans.ttf) format('truetype');
+    font-display: fallback;
 }
 
 @font-face {
@@ -10,6 +11,7 @@
     font-style:  normal;
     font-weight: 700;
     src:         local('Open Sans Bold'), local('OpenSans-Bold'), url(../fonts/open-sans-bold.ttf) format('truetype');
+    font-display: fallback;
 }
 
 @font-face {
@@ -17,6 +19,7 @@
     font-style:  normal;
     font-weight: 300;
     src:         local('Merriweather Light'), local('Merriweather-Light'), url(../fonts/merriweather-light.ttf) format('truetype');
+    font-display: fallback;
 }
 
 @font-face {
@@ -24,6 +27,7 @@
     font-style:  normal;
     font-weight: 400;
     src:         local('Merriweather'), url(../fonts/merriweather.ttf) format('truetype');
+    font-display: fallback;
 }
 
 @font-face {
@@ -31,6 +35,7 @@
     font-style:  normal;
     font-weight: 700;
     src:         local('Merriweather Bold'), local('Merriweather-Bold'), url(../fonts/merriweather-bold.ttf) format('truetype');
+    font-display: fallback;
 }
 
 @font-face {
@@ -38,6 +43,7 @@
     font-style:  italic;
     font-weight: 300;
     src:         local('Merriweather Light Italic'), local('Merriweather-LightItalic'), url(../fonts/merriweather-light-italic.ttf) format('truetype');
+    font-display: fallback;
 }
 
 @font-face {
@@ -60,4 +66,5 @@
 @font-face {
     font-family: 'HYXinRenWenSongW';
     src: local('HYXinRenWenSongW'), url(../fonts/HYXinRenWenSongW.ttf) format('truetype');
+    font-display: fallback;
 }
