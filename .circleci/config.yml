@@ -36,15 +36,14 @@ jobs:
           fingerprints:
             - "d3:15:02:72:f5:16:05:4a:0a:dc:76:bc:2a:8d:4b:3e"
 
-      - run:
-            git add .
-            git commit -C HEAD
-            git rebase --autosquash
-            git push
-            cd ..
-            git clone git@github.com:noirgif/blog
-            rmdir blog/themes/tranquilpeak
-            mv tranquilpeak blog/themes
-            cd blog
-            git commit -am "Update dependency"
-            git push
+      - run: |
+          git add .
+          git commit -C HEAD
+          git push
+          cd ..
+          git clone git@github.com:noirgif/blog
+          rmdir blog/themes/tranquilpeak
+          mv tranquilpeak blog/themes
+          cd blog
+          git commit -am "Update dependency"
+          git push
