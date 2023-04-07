@@ -41,9 +41,10 @@ jobs:
           git commit -C HEAD
           git push
           cd ..
-          git clone git@github.com:noirgif/blog
-          rmdir blog/themes/tranquilpeak
+          rm -rf blog-temp
+          git clone git@github.com:noirgif/blog blog-temp
+          rmdir blog-temp/themes/tranquilpeak
           mv tranquilpeak blog/themes
-          cd blog
+          cd blog-temp
           git commit -am "Update dependency"
           git push
