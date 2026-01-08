@@ -8,6 +8,42 @@
         var thumbnailImagePosition = theme.thumbnail_image_position;
         /* Define thumbnail image */
 
+        // Check if this is a photo-diary layout post
+        var isPhotoDiary = post.layout === 'photo-diary';
+        var photoDiaryEntries = [];
+        
+        if (isPhotoDiary) {
+            // Parse entries from content using <!-- entry --> markers
+            var entryRegex = /<!--\s*entry\s*-->([\s\S]*?)<!--\s*\/entry\s*-->/gi;
+            var match;
+            
+            while ((match = entryRegex.exec(postContent)) !== null) {
+                var entryContent = match[1];
+                var photos = [];
+                var caption = '';
+                
+                // Extract images - HTML img tags (content is already rendered)
+                var imgHtmlRegex = /<img[^>]+src=["']([^"']+)["'][^>]*>/gi;
+                var imgMatch;
+                while ((imgMatch = imgHtmlRegex.exec(entryContent)) !== null) {
+                    photos.push(imgMatch[1]);
+                }
+                
+                // Extract caption
+                caption = entryContent
+                    .replace(/<img[^>]*>/gi, '')
+                    .replace(/<p[^>]*>|<\/p>/gi, '')
+                    .replace(/<[^>]*>/g, '')
+                    .replace(/\n+/g, ' ')
+                    .trim()
+                    .substring(0, 150);
+                
+                if (photos.length > 0) {
+                    photoDiaryEntries.push({ photos: photos, caption: caption });
+                }
+            }
+        }
+
         // Define position of the thumbnail image
         if (!post.excerpt && !post.link) {
             thumbnailImagePosition = "bottom";
@@ -89,6 +125,33 @@
                             </span>
                         <% } %>
                     <% } %>
+                </div>
+            <% } else if (isPhotoDiary && photoDiaryEntries.length > 0) { %>
+                <div class="postShorten-content photo-diary-preview">
+                    <a href="<%- url_for(post.path) %>" class="photo-diary-preview-link">
+                        <div class="photo-diary-preview-grid photos-<%= Math.min(photoDiaryEntries.length, 4) %>">
+                            <% photoDiaryEntries.slice(0, 4).forEach(function(entry, idx) { %>
+                                <div class="photo-diary-preview-item">
+                                    <img src="<%- entry.photos[0] %>" alt="" loading="lazy" />
+                                    <% if (idx === 3 && photoDiaryEntries.length > 4) { %>
+                                        <div class="photo-diary-preview-more">+<%= photoDiaryEntries.length - 4 %></div>
+                                    <% } %>
+                                </div>
+                            <% }); %>
+                        </div>
+                        <% if (photoDiaryEntries[0].caption) { %>
+                            <p class="photo-diary-preview-caption"><%= photoDiaryEntries[0].caption %></p>
+                        <% } %>
+                    </a>
+                    <p>
+                        <a
+                            href="<%- url_for(post.path) %>"
+                            class="postShorten-excerpt_link link"
+                            aria-label="<% __('global.open_post') %>: <%= post.title %>"
+                        >
+                            View <%= photoDiaryEntries.length %> photos →
+                        </a>
+                    </p>
                 </div>
             <% } else { %>
                 <div class="postShorten-content">
