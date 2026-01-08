@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap");
 @font-face {
   font-family: "Open Sans";
   font-style: normal;
@@ -3281,7 +3280,7 @@ a.tag--small,
 }
 
 .photo-diary-title {
-  font-family: "Crimson Text", Georgia, serif;
+  font-family: "Merriweather", "Times New Roman", "HYXinRenWenSongW", "MS PMincho", "YuMincho", "Noto Serif SC", serif;
   font-size: 3.2rem;
   font-weight: 600;
   color: #2c3e50;
@@ -3463,7 +3462,7 @@ a.tag--small,
 }
 .entry-caption p {
   margin: 0;
-  font-family: "Crimson Text", Georgia, serif;
+  font-family: "Merriweather", "Times New Roman", "HYXinRenWenSongW", "MS PMincho", "YuMincho", "Noto Serif SC", serif;
   font-size: 1.7rem;
   line-height: 1.6;
   color: #34495e;
@@ -3492,6 +3491,83 @@ a.tag--small,
     padding: 24px 18px;
     border-radius: 12px;
   }
+}
+
+.photo-diary-preview .photo-diary-preview-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.photo-diary-preview .photo-diary-preview-link:hover .photo-diary-preview-grid img {
+  transform: scale(1.03);
+}
+.photo-diary-preview .photo-diary-preview-grid {
+  display: grid;
+  gap: 4px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.photo-diary-preview .photo-diary-preview-grid.photos-1 {
+  grid-template-columns: 1fr;
+}
+.photo-diary-preview .photo-diary-preview-grid.photos-1 .photo-diary-preview-item {
+  aspect-ratio: 16/9;
+}
+.photo-diary-preview .photo-diary-preview-grid.photos-2 {
+  grid-template-columns: 1fr 1fr;
+}
+.photo-diary-preview .photo-diary-preview-grid.photos-2 .photo-diary-preview-item {
+  aspect-ratio: 1;
+}
+.photo-diary-preview .photo-diary-preview-grid.photos-3 {
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+.photo-diary-preview .photo-diary-preview-grid.photos-3 .photo-diary-preview-item:first-child {
+  grid-row: 1/3;
+}
+.photo-diary-preview .photo-diary-preview-grid.photos-3 .photo-diary-preview-item {
+  aspect-ratio: auto;
+}
+.photo-diary-preview .photo-diary-preview-grid.photos-4 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+.photo-diary-preview .photo-diary-preview-grid.photos-4 .photo-diary-preview-item {
+  aspect-ratio: 1;
+}
+.photo-diary-preview .photo-diary-preview-item {
+  position: relative;
+  overflow: hidden;
+  background: #e8ecef;
+}
+.photo-diary-preview .photo-diary-preview-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.photo-diary-preview .photo-diary-preview-more {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: "Open Sans", "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+.photo-diary-preview .photo-diary-preview-caption {
+  font-family: "Merriweather", "Times New Roman", "HYXinRenWenSongW", "MS PMincho", "YuMincho", "Noto Serif SC", serif;
+  font-style: italic;
+  color: #5d686f;
+  font-size: 1.5rem;
+  margin: 0 0 12px;
+  line-height: 1.5;
 }
 
 pre > code {
