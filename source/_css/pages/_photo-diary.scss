@@ -1,0 +1,255 @@
+// Photo Diary Layout
+// A vertical-scrolling photo diary with entries containing 1-4 photos and captions
+
+.photo-diary {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #fafbfc 0%, #f0f2f5 100%);
+}
+
+.photo-diary-header {
+    padding: 60px 20px 40px;
+    text-align: center;
+    
+    @media #{$small-and-down} {
+        padding: 40px 15px 30px;
+    }
+}
+
+.photo-diary-title {
+    font-family: 'Crimson Text', Georgia, serif;
+    font-size: 3.2rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0 0 12px;
+    letter-spacing: -0.02em;
+    
+    @media #{$small-and-down} {
+        font-size: 2.4rem;
+    }
+}
+
+.photo-diary-meta {
+    font-family: $open-sans-sans-serif;
+    font-size: 1.3rem;
+    color: #7f8c8d;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.photo-diary-content {
+    max-width: 60%;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+    
+    @media #{$medium-and-down} {
+        max-width: 80%;
+    }
+    
+    @media #{$small-and-down} {
+        max-width: 100%;
+        padding: 0 12px 40px;
+    }
+}
+
+.photo-diary-entries {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    
+    @media #{$small-and-down} {
+        gap: 48px;
+    }
+}
+
+.photo-diary-entry {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        0 8px 24px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e0e4e8;
+    position: relative;
+    
+    // Decorative divider line between entries
+    &::before {
+        content: '';
+        position: absolute;
+        top: -33px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
+        
+        @media #{$small-and-down} {
+            top: -25px;
+        }
+    }
+    
+    &:first-child::before {
+        display: none;
+    }
+    
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 
+            0 4px 12px rgba(0, 0, 0, 0.06),
+            0 12px 32px rgba(0, 0, 0, 0.1);
+    }
+}
+
+// Photo grid layouts
+.entry-photos {
+    display: grid;
+    gap: 3px;
+    background: #e8ecef;
+    
+    .entry-photo {
+        overflow: hidden;
+        position: relative;
+        
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.02) 100%);
+            pointer-events: none;
+        }
+        
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        
+        .photo-link {
+            display: block;
+            height: 100%;
+            cursor: zoom-in;
+            
+            &:hover img {
+                transform: scale(1.03);
+            }
+        }
+    }
+    
+    // Single photo - full width, taller
+    &.photos-1 {
+        grid-template-columns: 1fr;
+        
+        .entry-photo {
+            aspect-ratio: 4 / 3;
+            
+            @media #{$small-and-down} {
+                aspect-ratio: 3 / 2;
+            }
+        }
+    }
+    
+    // Two photos - side by side
+    &.photos-2 {
+        grid-template-columns: 1fr 1fr;
+        
+        .entry-photo {
+            aspect-ratio: 1;
+            
+            @media #{$small-and-down} {
+                aspect-ratio: 4 / 5;
+            }
+        }
+    }
+    
+    // Three photos - one large left, two stacked right
+    &.photos-3 {
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        
+        .entry-photo:first-child {
+            grid-row: 1 / 3;
+            aspect-ratio: auto;
+        }
+        
+        .entry-photo:not(:first-child) {
+            aspect-ratio: 4 / 3;
+        }
+        
+        @media #{$small-and-down} {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            
+            .entry-photo:first-child {
+                grid-column: 1 / 3;
+                grid-row: 1;
+                aspect-ratio: 16 / 9;
+            }
+            
+            .entry-photo:not(:first-child) {
+                aspect-ratio: 1;
+            }
+        }
+    }
+    
+    // Four photos - 2x2 grid
+    &.photos-4 {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        
+        .entry-photo {
+            aspect-ratio: 4 / 3;
+            
+            @media #{$small-and-down} {
+                aspect-ratio: 1;
+            }
+        }
+    }
+}
+
+.entry-caption {
+    padding: 20px 24px 24px;
+    
+    @media #{$small-and-down} {
+        padding: 16px 18px 20px;
+    }
+    
+    p {
+        margin: 0;
+        font-family: 'Crimson Text', Georgia, serif;
+        font-size: 1.7rem;
+        line-height: 1.6;
+        color: #34495e;
+        font-style: italic;
+        
+        @media #{$small-and-down} {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+// Footer styling
+.photo-diary .post-footer {
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid #e8ecef;
+}
+
+// Fallback for raw content
+.photo-diary-raw {
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        0 8px 24px rgba(0, 0, 0, 0.06);
+    
+    @media #{$small-and-down} {
+        padding: 24px 18px;
+        border-radius: 12px;
+    }
+}
+
+// Load Crimson Text font for elegant typography
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');

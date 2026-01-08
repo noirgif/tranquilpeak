@@ -1,0 +1,116 @@
+<%
+/**
+ * Photo Diary Layout
+ * 
+ * Usage in your post content:
+ * 
+ * <!-- entry -->
+ * ![](photo1.jpg)
+ * ![](photo2.jpg)
+ * Your caption here (up to 150 characters)
+ * <!-- /entry -->
+ */
+
+var entries = [];
+var content = post.content || '';
+
+// Parse entries from content using <!-- entry --> markers
+var entryRegex = /<!--\s*entry\s*-->([\s\S]*?)<!--\s*\/entry\s*-->/gi;
+var match;
+
+while ((match = entryRegex.exec(content)) !== null) {
+    var entryContent = match[1];
+    var photos = [];
+    var caption = '';
+    
+    // Extract images - markdown format
+    var imgMdRegex = /!\[([^\]]*)\]\(([^)]+)\)/g;
+    var imgMatch;
+    
+    while ((imgMatch = imgMdRegex.exec(entryContent)) !== null) {
+        photos.push({ src: imgMatch[2], alt: imgMatch[1] });
+    }
+    
+    // Extract images - HTML img tags (in case markdown was already rendered)
+    var imgHtmlRegex = /<img[^>]+src=["']([^"']+)["'][^>]*(?:alt=["']([^"']*)["'])?[^>]*>/gi;
+    while ((imgMatch = imgHtmlRegex.exec(entryContent)) !== null) {
+        photos.push({ src: imgMatch[1], alt: imgMatch[2] || '' });
+    }
+    
+    // Extract caption: remove images and HTML tags, get remaining text
+    caption = entryContent
+        .replace(/!\[[^\]]*\]\([^)]+\)/g, '')      // Remove markdown images
+        .replace(/<img[^>]*>/gi, '')                // Remove HTML images
+        .replace(/<p[^>]*>|<\/p>/gi, '')           // Remove p tags
+        .replace(/<[^>]*>/g, '')                    // Remove other HTML tags
+        .replace(/\n+/g, ' ')                       // Collapse newlines
+        .trim()
+        .substring(0, 150);
+    
+    if (photos.length > 0) {
+        entries.push({ photos: photos, caption: caption });
+    }
+}
+%>
+
+<article class="photo-diary">
+    <% if (post.coverCaption) { %>
+        <span class="post-header-cover-caption caption"><%= post.coverCaption %></span>
+    <% } %>
+    
+    <% if (!post.coverImage || post.coverMeta === 'out') { %>
+        <div class="photo-diary-header main-content-wrap">
+            <h1 class="photo-diary-title"><%= post.title || '' %></h1>
+            <% if (post.meta === undefined || post.meta) { %>
+                <div class="photo-diary-meta">
+                    <time datetime="<%= date_xml(post.date) %>">
+                        <%= date(post.date, 'MMM D, YYYY') %>
+                    </time>
+                </div>
+            <% } %>
+        </div>
+    <% } %>
+
+    <div class="photo-diary-content">
+        <% if (entries.length > 0) { %>
+            <div class="photo-diary-entries">
+                <% entries.forEach(function(entry, index) { %>
+                    <div class="photo-diary-entry" data-entry-index="<%= index %>">
+                        <div class="entry-photos photos-<%= Math.min(entry.photos.length, 4) %>">
+                            <% var photos = entry.photos.slice(0, 4); %>
+                            <% photos.forEach(function(photo, photoIndex) { %>
+                                <div class="entry-photo">
+                                    <a href="<%- url_for(photo.src) %>" class="photo-link" data-fancybox="entry-<%= index %>">
+                                        <img 
+                                            src="<%- url_for(photo.src) %>" 
+                                            alt="<%= photo.alt %>"
+                                            loading="lazy"
+                                        />
+                                    </a>
+                                </div>
+                            <% }); %>
+                        </div>
+                        <% if (entry.caption) { %>
+                            <div class="entry-caption">
+                                <p><%= entry.caption %></p>
+                            </div>
+                        <% } %>
+                    </div>
+                <% }); %>
+            </div>
+        <% } else { %>
+            <div class="photo-diary-raw main-content-wrap">
+                <%- post.content %>
+            </div>
+        <% } %>
+    </div>
+
+    <div id="post-footer" class="post-footer main-content-wrap">
+        <% if ((post.tags) && (post.tags.length > 0)) { %>
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small"><%= __('post.tagged_in') %></span><br/>
+                <%- partial('post/tag', {tags: post.tags})%>
+            </div>
+        <% } %>
+    </div>
+</article>
