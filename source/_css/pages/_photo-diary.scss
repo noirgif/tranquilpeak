@@ -221,7 +221,6 @@
         font-size: 1.7rem;
         line-height: 1.6;
         color: #34495e;
-        font-style: italic;
         
         @media #{$small-and-down} {
             font-size: 1.5rem;
@@ -338,7 +337,6 @@
     
     .photo-diary-preview-caption {
         font-family: $merriweather-serif;
-        font-style: italic;
         color: #5d686f;
         font-size: 1.5rem;
         margin: 0 0 12px;
