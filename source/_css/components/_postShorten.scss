@@ -1,3 +1,7 @@
+@use "sass:map";
+@use "../utils/mixins/prefix";
+@use "../utils/variables";
+
 // Group of `.postShorten`
 // Add margin and border bottom when `.postShorten` are in `.postShorten-group`
 .postShorten-group {
@@ -34,12 +38,12 @@
         line-height: 1.5em;
 
         a {
-            color: map-get($colors, light);
+            color: map.get(variables.$colors, light);
         }
     }
     .postShorten-meta,
     .postShorten-readingtime {
-        color: map-get($colors, light);
+        color: map.get(variables.$colors, light);
     }
     .postShorten-excerpt_link {
         // Bring the post's link nearest of the excerpt
@@ -48,19 +52,19 @@
     .postShorten-meta,
     .postShorten-readingtime,
     .postShorten-excerpt_link {
-        font-family: map-get($font-families, 'post-excerpt-link');
-        font-size:   map-get($font-size, small);
+        font-family: map.get(variables.$font-families, 'post-excerpt-link');
+        font-size:   map.get(variables.$font-size, small);
         font-weight: 400;
     }
     .postShorten-excerpt,
     .postShorten-content {
         text-rendering: optimizelegibility;
         letter-spacing: -0.3px;
-        font-family:    map-get($font-families, 'post-content');
-        color:          map-get($colors, base);
+        font-family:    map.get(variables.$font-families, 'post-content');
+        color:          map.get(variables.$colors, base);
         font-weight:    400;
         overflow:       hidden;
-        @include prefix('hypens', 'auto', 'webkit' 'moz');
+        @include prefix.prefix('hypens', 'auto', 'webkit' 'moz');
 
         img {
             display:   block;
@@ -77,7 +81,7 @@
 }
 
 // Hide the post's thumbnail image on very small screen and down
-@media #{$xsmall-and-down} {
+@media #{variables.$xsmall-and-down} {
     .postShorten {
         .postShorten-thumbnailimg {
             display: none;
@@ -90,7 +94,7 @@
 }
 
 // Display the post's thumbnail image on small screen and up
-@media #{$small-and-up} {
+@media #{variables.$small-and-up} {
     .postShorten.postShorten--thumbnailimg-right {
         .postShorten-thumbnailimg {
             float:  right;
@@ -98,15 +102,15 @@
 
             img {
                 display:    block;
-                width:      $post-thumbnail-image-width;
-                height:     $post-thumbnail-image-width;
+                width:      variables.$post-thumbnail-image-width;
+                height:     variables.$post-thumbnail-image-width;
                 object-fit: cover;
                 overflow:   hidden;
             }
         }
         .postShorten-wrap {
             float: left;
-            width: calc(100% - #{$post-thumbnail-image-width} - 20px);
+            width: calc(100% - #{variables.$post-thumbnail-image-width} - 20px);
         }
     }
     .postShorten.postShorten--thumbnailimg-left {
@@ -116,15 +120,15 @@
 
             img {
                 display:    block;
-                width:      $post-thumbnail-image-width;
-                height:     $post-thumbnail-image-width;
+                width:      variables.$post-thumbnail-image-width;
+                height:     variables.$post-thumbnail-image-width;
                 object-fit: cover;
                 overflow:   hidden;
             }
         }
         .postShorten-wrap {
             float: right;
-            width: calc(100% - #{$post-thumbnail-image-width} - 20px);
+            width: calc(100% - #{variables.$post-thumbnail-image-width} - 20px);
         }
     }
     .postShorten.postShorten--thumbnailimg-top {
@@ -150,7 +154,7 @@
             img {
                 width:      100%;
                 height:     auto;
-                max-height: $post-bottom-thumbnail-image-max-height;
+                max-height: variables.$post-bottom-thumbnail-image-max-height;
                 object-fit: cover;
             }
         }

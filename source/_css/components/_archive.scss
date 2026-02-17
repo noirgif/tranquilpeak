@@ -1,10 +1,13 @@
+@use "sass:map";
+@use "../utils/variables";
+
 .archive-result {
     display: none;
 }
 
 .archive {
     .archive-title {
-        color: $font-color-base;
+        color: variables.$font-color-base;
 
         &:hover {
             text-decoration: underline;
@@ -16,21 +19,21 @@
         .archive-post {
             .archive-post-title {
                 margin-left: 10px;
-                color:       $font-color-base;
+                color:       variables.$font-color-base;
 
                 &:hover {
                     text-decoration: underline;
                 }
             }
             .archive-post-date {
-                color: map-get($colors, light);
+                color: map.get(variables.$colors, light);
             }
             // Change style of the list by adding font-awesome icon
             &::before {
                 font-family: 'Font Awesome 5 Free';
                 font-weight: 600;
                 content:     '\f0da';
-                font-size:   map-get($font-size, small);
+                font-size:   map.get(variables.$font-size, small);
             }
         }
     }

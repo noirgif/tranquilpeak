@@ -1,8 +1,12 @@
+@use "sass:color";
+@use "sass:map";
+@use "../utils/variables";
+
 .caption {
     display:       block;
-    font-family:   map-get($font-families, 'caption');
-    font-size:     map-get($font-size, small);
-    color:         darken(map-get($colors, 'light'), 10%);
+    font-family:   map.get(variables.$font-families, 'caption');
+    font-size:     map.get(variables.$font-size, small);
+    color:         color.adjust(map.get(variables.$colors, 'light'), $lightness: -10%);
     text-align:    center;
     font-style:    italic;
     padding-right: 10px;

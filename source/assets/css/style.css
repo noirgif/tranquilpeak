@@ -13663,7 +13663,7 @@ blockquote > p:first-child {
 }
 #sidebar ul.sidebar-buttons li.sidebar-button .sidebar-button-link:hover, #sidebar ul.sidebar-buttons li.sidebar-button .sidebar-button-link:active {
   text-decoration: none;
-  color: white;
+  color: hsl(0, 0%, 127.1568627451%);
 }
 #sidebar ul.sidebar-buttons:first-child {
   margin-top: 5px;
@@ -15288,7 +15288,7 @@ a.fancybox {
   font-style: italic;
   margin: 1.5em 0 0;
 }
-.pullquote.left, .pullquote.figure.fig-20, .pullquote.figure.fig-25, .pullquote.figure.fig-33, .pullquote.figure.fig-50, .pullquote.figure.fig-75 {
+.pullquote.left {
   width: 45%;
   float: left;
   margin: 1.5em 35px 1.5em 0;

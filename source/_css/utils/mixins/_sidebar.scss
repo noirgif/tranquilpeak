@@ -1,6 +1,10 @@
+@use "sass:map";
+@use "../variables";
+@use "prefix";
+
 /// Mixin helper to display the sidebar in medium size
 @mixin sidebar-md {
-    width: map-get($sidebar, md-screen-width);
+    width: map.get(variables.$sidebar, md-screen-width);
 
     // Author information
     .sidebar-profile {
@@ -42,13 +46,13 @@
     }
     // Used to animate the sidebar (pushed effect)
     &.pushed {
-        @include prefix(transform, translate3d(#{map-get($sidebar, md-screen-width)}, 0, 0), 'webkit' 'moz');
+        @include prefix.prefix(transform, translate3d(#{map.get(variables.$sidebar, md-screen-width)}, 0, 0), 'webkit' 'moz');
     }
 }
 
 /// Mixin helper to display the sidebar in large size
 @mixin sidebar-lg {
-    width: map-get($sidebar, lg-screen-width);
+    width: map.get(variables.$sidebar, lg-screen-width);
 
     // Author information
     .sidebar-profile {
@@ -104,13 +108,13 @@
     }
     // Used to animate the sidebar (pushed effect)
     &.pushed {
-        @include prefix(transform, translate3d(#{map-get($sidebar, lg-screen-width)}, 0, 0), 'webkit' 'moz');
+        @include prefix.prefix(transform, translate3d(#{map.get(variables.$sidebar, lg-screen-width)}, 0, 0), 'webkit' 'moz');
     }
 }
 
 /// Mixin helper to display the sidebar in large size
 @mixin sidebar-xlg {
-    width:           map-get($sidebar, xlg-screen-width);
+    width:           map.get(variables.$sidebar, xlg-screen-width);
     display:         -webkit-flex;
     display:         -webkit-box;
     display:         -moz-box;
@@ -139,7 +143,7 @@
         .sidebar-profile-location {
             font-weight: 400;
             font-size:   1.6rem;
-            color:       map-get($sidebar, color);
+            color:       map.get(variables.$sidebar, color);
         }
         .sidebar-profile-job,
         .sidebar-profile-location {
@@ -195,6 +199,6 @@
     }
     // Used to animate the sidebar (pushed effect)
     &.pushed {
-        @include prefix(transform, translate3d(#{map-get($sidebar, xlg-screen-width)}, 0, 0), 'webkit' 'moz');
+        @include prefix.prefix(transform, translate3d(#{map.get(variables.$sidebar, xlg-screen-width)}, 0, 0), 'webkit' 'moz');
     }
 }

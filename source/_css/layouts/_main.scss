@@ -1,7 +1,11 @@
+@use "sass:map";
+@use "../utils/mixins/main";
+@use "../utils/variables";
+
 #main {
     display:            block;
     min-height:         100%;
-    background:         map-get($main, 'background-color');
+    background:         map.get(variables.$main, 'background-color');
     transition:         transform .25s ease-in-out;
     -webkit-transition: -webkit-transform .25s ease-in-out;
 
@@ -27,101 +31,101 @@
     }
 }
 
-@media #{$small-and-down} {
+@media #{variables.$small-and-down} {
     #main {
         // Display `main` div in large size
-        @include main-lg;
+        @include main.main-lg;
 
         // Push `main` div from the size of the large sidebar
         &[data-behavior="1"],
         &[data-behavior="2"],
         &[data-behavior="4"],
         &[data-behavior="5"] {
-            @include main-pushed-lg;
+            @include main.main-pushed-lg;
         }
         // Push `main` div from the size of the medium sidebar
         &[data-behavior="3"],
         &[data-behavior="6"] {
-            @include main-pushed-md;
+            @include main.main-pushed-md;
         }
     }
 }
 
-@media #{$medium-only} {
+@media #{variables.$medium-only} {
     #main {
         // Display `main` div in medium size
         &[data-behavior="1"],
         &[data-behavior="2"],
         &[data-behavior="3"] {
-            @include main-md;
+            @include main.main-md;
         }
         // Display `main` div in large size and push it from the size of the large sidebar
         &[data-behavior="4"],
         &[data-behavior="5"] {
-            @include main-lg;
-            @include main-pushed-lg;
+            @include main.main-lg;
+            @include main.main-pushed-lg;
         }
         // Display `main` div in large size and push it from the size of the medium sidebar
         &[data-behavior="6"] {
-            @include main-lg;
-            @include main-pushed-md;
+            @include main.main-lg;
+            @include main.main-pushed-md;
         }
     }
 }
 
-@media #{$large-only} {
+@media #{variables.$large-only} {
     #main {
         // Display `main` div in small size
         &[data-behavior="1"],
         &[data-behavior="2"] {
-            @include main-sm;
+            @include main.main-sm;
         }
         // Display `main` div in medium size
         &[data-behavior="3"] {
-            @include main-md;
+            @include main.main-md;
         }
         // Display `main` div in large size and push it from the size of the large sidebar
         &[data-behavior="4"],
         &[data-behavior="5"]{
-            @include main-lg;
-            @include main-pushed-lg;
+            @include main.main-lg;
+            @include main.main-pushed-lg;
         }
         // Display `main` div in large size and push it from the size of the medium sidebar
         &[data-behavior="6"] {
-            @include main-lg;
-            @include main-pushed-md;
+            @include main.main-lg;
+            @include main.main-pushed-md;
         }
     }
 }
 
-@media #{$xlarge-and-up} {
+@media #{variables.$xlarge-and-up} {
     #main {
         // Display `main` div in extra small size
         &[data-behavior="1"] {
-            @include main-xs;
+            @include main.main-xs;
         }
         // Display `main` div in small size
         &[data-behavior="2"] {
-            @include main-sm;
+            @include main.main-sm;
         }
         // Display `main` div in medium size
         &[data-behavior="3"] {
-            @include main-md;
+            @include main.main-md;
         }
         // Display `main` div in large size and push it from the size of the extra large sidebar
         &[data-behavior="4"] {
-            @include main-lg;
-            @include main-pushed-xlg;
+            @include main.main-lg;
+            @include main.main-pushed-xlg;
         }
         // Display `main` div in large size and push it from the size of the extra large sidebar
         &[data-behavior="5"] {
-            @include main-lg;
-            @include main-pushed-lg;
+            @include main.main-lg;
+            @include main.main-pushed-lg;
         }
         // Display `main` div in large size and push it from the size of the medium sidebar
         &[data-behavior="6"] {
-            @include main-lg;
-            @include main-pushed-md;
+            @include main.main-lg;
+            @include main.main-pushed-md;
         }
     }
 }

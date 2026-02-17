@@ -1,3 +1,5 @@
+@use "../utils/variables";
+
 #algolia-search-modal {
     display: none;
 
@@ -5,7 +7,7 @@
         position: absolute;
         top:      15px;
         left:     15px;
-        color:    $font-color-base;
+        color:    variables.$font-color-base;
     }
     .media-content {
         font-size: 0.95em;
@@ -32,7 +34,7 @@
     }
     .results-count {
         line-height: 50px;
-        color:       $font-color-base;
+        color:       variables.$font-color-base;
     }
     .searchby-algolia {
         position: absolute;

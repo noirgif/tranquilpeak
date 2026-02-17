@@ -1,39 +1,42 @@
+@use "sass:map";
+@use "../utils/variables";
+
 .highlight-text {
     display: inline;
     padding: 3px;
 
     &.red {
-        background-color:map-get($highlight-text-bg-colors, 'red');
+        background-color:map.get(variables.$highlight-text-bg-colors, 'red');
     }
     &.green {
-        background-color:map-get($highlight-text-bg-colors, 'green');
+        background-color:map.get(variables.$highlight-text-bg-colors, 'green');
     }
     &.blue {
-        background-color:map-get($highlight-text-bg-colors, 'blue');
+        background-color:map.get(variables.$highlight-text-bg-colors, 'blue');
     }
     &.purple {
-        background-color:map-get($highlight-text-bg-colors, 'purple');
+        background-color:map.get(variables.$highlight-text-bg-colors, 'purple');
     }
     &.orange {
-        background-color:map-get($highlight-text-bg-colors, 'orange');
+        background-color:map.get(variables.$highlight-text-bg-colors, 'orange');
     }
     &.yellow {
-        background-color:map-get($highlight-text-bg-colors, 'yellow');
+        background-color:map.get(variables.$highlight-text-bg-colors, 'yellow');
     }
     &.cyan {
-        background-color:map-get($highlight-text-bg-colors, 'cyan');
+        background-color:map.get(variables.$highlight-text-bg-colors, 'cyan');
     }
     &.primary {
-        background-color:map-get($highlight-text-bg-colors, 'primary');
+        background-color:map.get(variables.$highlight-text-bg-colors, 'primary');
     }
     &.success {
-        background-color:map-get($highlight-text-bg-colors, 'success');
+        background-color:map.get(variables.$highlight-text-bg-colors, 'success');
     }
     &.warning {
-        background-color:map-get($highlight-text-bg-colors, 'warning');
+        background-color:map.get(variables.$highlight-text-bg-colors, 'warning');
     }
     &.danger {
-        background-color:map-get($highlight-text-bg-colors, 'danger');
+        background-color:map.get(variables.$highlight-text-bg-colors, 'danger');
     }
 
 }

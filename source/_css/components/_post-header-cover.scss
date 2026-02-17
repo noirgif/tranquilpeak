@@ -1,3 +1,7 @@
+@use "sass:map";
+@use "../utils/mixins/post-header-cover";
+@use "../utils/variables";
+
 .post-header {
     .post-title {
         margin:     0;
@@ -22,10 +26,10 @@
     background-position:         center;
     background-repeat:           no-repeat;
     width:                       100%;
-    padding:                     calc(#{map-get($header, 'height')} + 30px) 0 30px 0;
+    padding:                     calc(#{map.get(variables.$header, 'height')} + 30px) 0 30px 0;
     // 100% minus header high, minus padding-top, minus padding bottom and minus 4px for perfect pixels
     height:                      100%;
-    z-index:                     map-get($z-indexes, 'c-post-header-cover');
+    z-index:                     map.get(variables.$z-indexes, 'c-post-header-cover');
     // Sidebar animation
     // Transition style (push)
     transition:                  transform .25s ease-in-out;
@@ -39,7 +43,7 @@
         vertical-align: middle;
 
         .post-title {
-            max-width:     map-get($main-content, 'max-width');
+            max-width:     map.get(variables.$main-content, 'max-width');
             margin:        0 auto;
             color:         white;
             text-shadow:   0 2px 0 rgba(0, 0, 0, 0.9);
@@ -51,9 +55,9 @@
         }
         // Post meta contains post's date, post's categories and tags
         .post-meta {
-            max-width:      map-get($main-content, 'max-width');
-            font-family:    map-get($font-families, 'post-meta');
-            font-size:      $font-size-base;
+            max-width:      map.get(variables.$main-content, 'max-width');
+            font-family:    map.get(variables.$font-families, 'post-meta');
+            font-size:      variables.$font-size-base;
             color:          white !important;
             font-weight:    400;
             letter-spacing: 0.05em;
@@ -77,53 +81,53 @@
 }
 
 // Decrease the font size of the post's title on very small screen
-@media #{$xsmall-and-down} {
+@media #{variables.$xsmall-and-down} {
     .post-header-cover {
         .post-header {
             .post-title {
-                font-size: map-get($headings-font-size, h1);
+                font-size: map.get(variables.$headings-font-size, h1);
             }
         }
     }
 }
 
 // Increase the font size of the post's title on small screen
-@media #{$small-only} {
+@media #{variables.$small-only} {
     .post-header-cover {
         .post-header {
             .post-title {
-                font-size: map-get($headings-font-size, h1) + 0.5rem;
+                font-size: map.get(variables.$headings-font-size, h1) + 0.5rem;
             }
         }
     }
 }
 
-@media #{$small-and-down} {
+@media #{variables.$small-and-down} {
     .post-header-cover {
         // Display post header cover div in large size
-        @include post-header-cover-lg;
+        @include post-header-cover.post-header-cover-lg;
 
         // Push post header cover div from the size of the large sidebar
         &[data-behavior="1"],
         &[data-behavior="2"],
         &[data-behavior="4"],
         &[data-behavior="5"] {
-            @include post-header-cover-pushed-lg;
+            @include post-header-cover.post-header-cover-pushed-lg;
         }
         // Push post header cover div from the size of the medium sidebar
         &[data-behavior="3"],
         &[data-behavior="6"] {
-            @include post-header-cover-pushed-md;
+            @include post-header-cover.post-header-cover-pushed-md;
         }
     }
 }
 
-@media #{$medium-only} {
+@media #{variables.$medium-only} {
     // Increase the font size of the post's title on medium screen
     .post-header-cover {
         .post-header {
             .post-title {
-                font-size:   map-get($headings-font-size, h1) + 3rem;
+                font-size:   map.get(variables.$headings-font-size, h1) + 3rem;
                 line-height: 1.3em;
             }
         }
@@ -131,89 +135,89 @@
         &[data-behavior="1"],
         &[data-behavior="2"],
         &[data-behavior="3"] {
-            @include post-header-cover-md;
+            @include post-header-cover.post-header-cover-md;
         }
         // Display post header cover div in large size and push it from the size of the large sidebar
         &[data-behavior="4"],
         &[data-behavior="5"] {
-            @include post-header-cover-lg;
-            @include post-header-cover-pushed-lg;
+            @include post-header-cover.post-header-cover-lg;
+            @include post-header-cover.post-header-cover-pushed-lg;
         }
         // Display post header cover div in large size and push it from the size of the medium sidebar
         &[data-behavior="6"] {
-            @include post-header-cover-lg;
-            @include post-header-cover-pushed-md;
+            @include post-header-cover.post-header-cover-lg;
+            @include post-header-cover.post-header-cover-pushed-md;
         }
     }
 }
 
-@media #{$large-only} {
+@media #{variables.$large-only} {
     // Increase the font size of the post's title on large screen
     .post-header-cover {
         .post-header {
             .post-title {
-                font-size:   map-get($headings-font-size, h1) + 3.7rem;
+                font-size:   map.get(variables.$headings-font-size, h1) + 3.7rem;
                 line-height: 1.3em;
             }
         }
         // Display post header cover div in small size
         &[data-behavior="1"],
         &[data-behavior="2"] {
-            @include post-header-cover-sm;
+            @include post-header-cover.post-header-cover-sm;
         }
         // Display post header cover div in medium size
         &[data-behavior="3"] {
-            @include post-header-cover-md;
+            @include post-header-cover.post-header-cover-md;
         }
         // Display post header cover div in large size and push it from the size of the large sidebar
         &[data-behavior="4"],
         &[data-behavior="5"] {
-            @include post-header-cover-lg;
-            @include post-header-cover-pushed-lg;
+            @include post-header-cover.post-header-cover-lg;
+            @include post-header-cover.post-header-cover-pushed-lg;
         }
         // Display post header cover div in large size and push it from the size of the medium sidebar
         &[data-behavior="6"] {
-            @include post-header-cover-lg;
-            @include post-header-cover-pushed-md;
+            @include post-header-cover.post-header-cover-lg;
+            @include post-header-cover.post-header-cover-pushed-md;
         }
     }
 }
 
-@media #{$xlarge-and-up} {
+@media #{variables.$xlarge-and-up} {
     // Increase the font size of the post's title on large screen
     .post-header-cover {
         .post-header {
             .post-title {
-                font-size:   map-get($headings-font-size, h1) + 3.7rem;
+                font-size:   map.get(variables.$headings-font-size, h1) + 3.7rem;
                 line-height: 1.3em;
             }
         }
         // Display post header cover div in extra small size
         &[data-behavior="1"] {
-            @include post-header-cover-xs;
+            @include post-header-cover.post-header-cover-xs;
         }
         // Display post header cover div in small size
         &[data-behavior="2"] {
-            @include post-header-cover-sm;
+            @include post-header-cover.post-header-cover-sm;
         }
         // Display post header cover div in medium size
         &[data-behavior="3"] {
-            @include post-header-cover-md;
+            @include post-header-cover.post-header-cover-md;
         }
         // Display post header cover div in large size and push it from the size of the large sidebar
         &[data-behavior="4"] {
-            @include post-header-cover-lg;
-            @include post-header-cover-pushed-xlg;
+            @include post-header-cover.post-header-cover-lg;
+            @include post-header-cover.post-header-cover-pushed-xlg;
         }
         // Display post header cover div in large size and push it from the size of the extra large sidebar
         &[data-behavior="5"] {
-            @include post-header-cover-lg;
-            @include post-header-cover-pushed-lg;
+            @include post-header-cover.post-header-cover-lg;
+            @include post-header-cover.post-header-cover-pushed-lg;
         }
         // Display post header cover div in large size and push it from the size of the medium sidebar
         &[data-behavior="6"] {
-            @include post-header-cover-lg;
-            @include post-header-cover-pushed-md;
+            @include post-header-cover.post-header-cover-lg;
+            @include post-header-cover.post-header-cover-pushed-md;
         }
     }
 }

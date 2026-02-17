@@ -1,9 +1,13 @@
+@use "sass:map";
+@use "../utils/mixins/form";
+@use "../utils/variables";
+
 .form-control {
     background: transparent;
     width:      100%;
     border:     none;
     outline:    none;
-    color:      map-get($colors, base);
+    color:      map.get(variables.$colors, base);
     font-weight: 300;
 
     &:hover,
@@ -15,8 +19,8 @@
 
 // Input size variant
 .input--large {
-    @include input-size-variant(auto, 10px 0, 18px, 21px);
+    @include form.input-size-variant(auto, 10px 0, 18px, 21px);
 }
 .input--xlarge {
-    @include input-size-variant(auto, 10px 0, 25px, 30px);
+    @include form.input-size-variant(auto, 10px 0, 25px, 30px);
 }

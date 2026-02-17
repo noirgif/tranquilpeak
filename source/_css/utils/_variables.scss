@@ -1,3 +1,5 @@
+@use "sass:color";
+@use "sass:map";
 // Global settings
 // --------------------------------------------
 
@@ -89,25 +91,25 @@ $screen-min: (
     'xlg-min': 1280px
 );
 $screen-max: (
-    'xs-max': map-get($screen-min, sm-min) - 1,
-    'sm-max': map-get($screen-min, md-min) - 1,
-    'md-max': map-get($screen-min, lg-min) - 1,
-    'lg-max': map-get($screen-min, xlg-min) - 1
+    'xs-max': map.get($screen-min, sm-min) - 1,
+    'sm-max': map.get($screen-min, md-min) - 1,
+    'md-max': map.get($screen-min, lg-min) - 1,
+    'lg-max': map.get($screen-min, xlg-min) - 1
 );
 // Merged screen-* Maps
-$screen: map-merge($screen-min, $screen-max);
+$screen: map.merge($screen-min, $screen-max);
 // Shortcuts for medias
-$xsmall-and-down: "only screen and (max-width : #{map-get($screen, xs-max)})" !default;
-$small-and-down:  "only screen and (max-width : #{map-get($screen, sm-max)})" !default;
-$small-only:      "only screen and (min-width : #{map-get($screen, sm-min)}) and (max-width : #{map-get($screen, sm-max)})" !default;
-$small-and-up:    "only screen and (min-width : #{map-get($screen, sm-min)})" !default;
-$medium-and-down: "only screen and (max-width : #{map-get($screen, md-max)})" !default;
-$medium-only:     "only screen and (min-width : #{map-get($screen, md-min)}) and (max-width : #{map-get($screen, md-max)})" !default;
-$medium-and-up:   "only screen and (min-width : #{map-get($screen, md-min)})" !default;
-$large-and-down:  "only screen and (max-width : #{map-get($screen, lg-max)})" !default;
-$large-only:      "only screen and (min-width : #{map-get($screen, lg-min)}) and (max-width : #{map-get($screen, lg-max)})" !default;
-$large-and-up:    "only screen and (min-width : #{map-get($screen, lg-min)})" !default;
-$xlarge-and-up:   "only screen and (min-width : #{map-get($screen, xlg-min)})" !default;
+$xsmall-and-down: "only screen and (max-width : #{map.get($screen, xs-max)})" !default;
+$small-and-down:  "only screen and (max-width : #{map.get($screen, sm-max)})" !default;
+$small-only:      "only screen and (min-width : #{map.get($screen, sm-min)}) and (max-width : #{map.get($screen, sm-max)})" !default;
+$small-and-up:    "only screen and (min-width : #{map.get($screen, sm-min)})" !default;
+$medium-and-down: "only screen and (max-width : #{map.get($screen, md-max)})" !default;
+$medium-only:     "only screen and (min-width : #{map.get($screen, md-min)}) and (max-width : #{map.get($screen, md-max)})" !default;
+$medium-and-up:   "only screen and (min-width : #{map.get($screen, md-min)})" !default;
+$large-and-down:  "only screen and (max-width : #{map.get($screen, lg-max)})" !default;
+$large-only:      "only screen and (min-width : #{map.get($screen, lg-min)}) and (max-width : #{map.get($screen, lg-max)})" !default;
+$large-and-up:    "only screen and (min-width : #{map.get($screen, lg-min)})" !default;
+$xlarge-and-up:   "only screen and (min-width : #{map.get($screen, xlg-min)})" !default;
 
 // Base settings
 // Files are located in `base` folder
@@ -198,17 +200,17 @@ $highlight-colors: (
 );
 // Highlight text
 $highlight-text-bg-colors: (
-    'red':     lighten(red, 45%),
-    'green':   lighten(green, 65%),
-    'blue':    lighten(blue, 45%),
-    'purple':  lighten(purple, 70%),
-    'orange':  lighten(orange, 40%),
-    'yellow':  lighten(yellow, 40%),
-    'cyan':    lighten(cyan, 40%),
-    'primary': lighten(map-get($colors, 'primary'), 35%),
-    'success': lighten(map-get($colors, 'success'),35%),
-    'warning': lighten(map-get($colors, 'warning'), 40%),
-    'danger':  lighten(map-get($colors, 'danger'), 40%),
+    'red':     color.adjust(red, $lightness: 45%),
+    'green':   color.adjust(green, $lightness: 65%),
+    'blue':    color.adjust(blue, $lightness: 45%),
+    'purple':  color.adjust(purple, $lightness: 70%),
+    'orange':  color.adjust(orange, $lightness: 40%),
+    'yellow':  color.adjust(yellow, $lightness: 40%),
+    'cyan':    color.adjust(cyan, $lightness: 40%),
+    'primary': color.adjust(map.get($colors, 'primary'), $lightness: 35%),
+    'success': color.adjust(map.get($colors, 'success'),$lightness: 35%),
+    'warning': color.adjust(map.get($colors, 'warning'), $lightness: 40%),
+    'danger':  color.adjust(map.get($colors, 'danger'), $lightness: 40%),
 );
 // Image gallery photos
 // Space between 2 photos

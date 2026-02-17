@@ -1,3 +1,6 @@
+@use "sass:map";
+@use "../utils/variables";
+
 #cover {
     position:          fixed;
     width:             100%;
@@ -7,5 +10,5 @@
     top:               0;
     left:              0;
     // position the cover below the whole blog
-    z-index:           map-get($z-indexes, l-cover);
+    z-index:           map.get(variables.$z-indexes, l-cover);
 }

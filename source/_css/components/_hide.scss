@@ -1,31 +1,33 @@
+@use "../utils/variables";
+
 // Hide element on all screens
 .hide {
     display: none;
 }
 
 // Hide element on very small screen and down
-@media #{$xsmall-and-down} {
+@media #{variables.$xsmall-and-down} {
     .hide-xs {
         display: none;
     }
 }
 
 // Hide element on small screen only
-@media #{$small-only} {
+@media #{variables.$small-only} {
     .hide-sm {
         display: none;
     }
 }
 
 // Hide element on medium screen only
-@media #{$medium-only} {
+@media #{variables.$medium-only} {
     .hide-md {
         display: none;
     }
 }
 
 // Hide element on large screen and up
-@media #{$large-and-up} {
+@media #{variables.$large-and-up} {
     .hide-lg {
         display: none;
     }

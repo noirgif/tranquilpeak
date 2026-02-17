@@ -1,3 +1,5 @@
+@use "../utils/variables";
+
 .figure {
     &.clear {
         clear: both;
@@ -55,7 +57,7 @@
 }
 
 // Hide caption of small pictures on small screen
-@media #{$small-and-down} {
+@media #{variables.$small-and-down} {
     .fig-33, .fig-25, .fig-20 {
         .caption {
             display: none;

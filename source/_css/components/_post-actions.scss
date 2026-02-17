@@ -1,3 +1,6 @@
+@use "sass:map";
+@use "../utils/variables";
+
 .post-actions-wrap {
     height:      60px;
     padding:     0;
@@ -20,7 +23,7 @@
         // Best width for responsive post's navigation panel on small screen and up
         width:   35%;
         // On very small screen `.post-actions-nav` will be above `.post-actions-share`
-        z-index: map-get($z-indexes, c-post-bottom-bar) + 2;
+        z-index: map.get(variables.$z-indexes, c-post-bottom-bar) + 2;
 
         li.post-action {
             float:     left;
@@ -40,7 +43,7 @@
         // best width for responsive post's share panel on small screen and up
         width:   65%;
         // On very small screen `.post-actions-nav` will be above `.post-actions-share`
-        z-index: map-get($z-indexes, c-post-bottom-bar) + 1;
+        z-index: map.get(variables.$z-indexes, c-post-bottom-bar) + 1;
 
         li.post-action {
             float: right;
@@ -55,7 +58,7 @@
 }
 
 // Increase width of `.post-actions-share` on small screen
-@media #{$small-and-down} {
+@media #{variables.$small-and-down} {
     .post-actions-wrap {
         ul.post-action-nav {
             // Best width for responsive post's navigation panel on small screen
@@ -69,7 +72,7 @@
 }
 
 // Increase width of `.post-actions-nav` on very small screen
-@media #{$xsmall-and-down} {
+@media #{variables.$xsmall-and-down} {
     .post-actions-wrap {
         ul.post-action-nav {
             // Best width for responsive post's navigation panel on very small screen

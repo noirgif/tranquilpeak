@@ -1,3 +1,7 @@
+@use "sass:color";
+@use "sass:map";
+@use "../utils/variables";
+
 .alert {
     position:    relative;
     text-align:  left;
@@ -28,44 +32,44 @@
         }
     }
     &.info {
-        border-color:     map-get($colors, 'primary');
-        background-color: lighten(map-get($colors, 'primary'), 37%);
+        border-color:     map.get(variables.$colors, 'primary');
+        background-color: color.adjust(map.get(variables.$colors, 'primary'), $lightness: 37%);
 
         &:not(.no-icon) {
             &:before {
                 content: "\f05a";
-                color:   map-get($colors, 'primary');
+                color:   map.get(variables.$colors, 'primary');
             }
         }
     }
     &.success {
-        border-color:     map-get($colors, 'success');
-        background-color: lighten(map-get($colors, 'success'), 42%);
+        border-color:     map.get(variables.$colors, 'success');
+        background-color: color.adjust(map.get(variables.$colors, 'success'), $lightness: 42%);
         content:          "\f058";
         &:not(.no-icon) {
             &:before {
                 content: "\f058";
-                color:   map-get($colors, 'success');
+                color:   map.get(variables.$colors, 'success');
             }
         }
     }
     &.warning {
-        border-color:     map-get($colors, 'warning');
-        background-color: lighten(map-get($colors, 'warning'), 42%);
+        border-color:     map.get(variables.$colors, 'warning');
+        background-color: color.adjust(map.get(variables.$colors, 'warning'), $lightness: 42%);
         &:not(.no-icon) {
             &:before {
                 content: "\f071";
-                color:   map-get($colors, 'warning');
+                color:   map.get(variables.$colors, 'warning');
             }
         }
     }
     &.danger {
-        border-color:     map-get($colors, 'danger');
-        background-color: lighten(map-get($colors, 'danger'), 42%);
+        border-color:     map.get(variables.$colors, 'danger');
+        background-color: color.adjust(map.get(variables.$colors, 'danger'), $lightness: 42%);
         &:not(.no-icon) {
             &:before {
                 content: "\f05e";
-                color:   map-get($colors, 'danger');
+                color:   map.get(variables.$colors, 'danger');
             }
         }
     }

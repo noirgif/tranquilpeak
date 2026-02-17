@@ -1,12 +1,15 @@
+@use "sass:map";
+@use "../utils/variables";
+
 .pagination-bar {
     height: auto;
     width:  100%;
-    height: $pagination-height;
+    height: variables.$pagination-height;
 
     .pagination {
         position:    relative;
-        height:      $pagination-height;
-        line-height: $pagination-height;
+        height:      variables.$pagination-height;
+        line-height: variables.$pagination-height;
         display:     block;
         list-style:  none;
         padding:     0 10px;
@@ -19,8 +22,8 @@
         }
         .pagination-number {
             float:     right;
-            font-size: map-get($font-size, small);
-            color:     map-get($colors, light);
+            font-size: map.get(variables.$font-size, small);
+            color:     map.get(variables.$colors, light);
         }
     }
 }

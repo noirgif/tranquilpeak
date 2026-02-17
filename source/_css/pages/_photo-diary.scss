@@ -1,3 +1,5 @@
+@use "../utils/variables";
+
 // Photo Diary Layout
 // A vertical-scrolling photo diary with entries containing 1-4 photos and captions
 
@@ -10,26 +12,26 @@
     padding: 60px 20px 40px;
     text-align: center;
     
-    @media #{$small-and-down} {
+    @media #{variables.$small-and-down} {
         padding: 40px 15px 30px;
     }
 }
 
 .photo-diary-title {
-    font-family: $merriweather-serif;
+    font-family: variables.$merriweather-serif;
     font-size: 3.2rem;
     font-weight: 600;
     color: #2c3e50;
     margin: 0 0 12px;
     letter-spacing: -0.02em;
     
-    @media #{$small-and-down} {
+    @media #{variables.$small-and-down} {
         font-size: 2.4rem;
     }
 }
 
 .photo-diary-meta {
-    font-family: $open-sans-sans-serif;
+    font-family: variables.$open-sans-sans-serif;
     font-size: 1.3rem;
     color: #7f8c8d;
     text-transform: uppercase;
@@ -41,11 +43,11 @@
     margin: 0 auto;
     padding: 0 20px 60px;
     
-    @media #{$medium-and-down} {
+    @media #{variables.$medium-and-down} {
         max-width: 80%;
     }
     
-    @media #{$small-and-down} {
+    @media #{variables.$small-and-down} {
         max-width: 100%;
         padding: 0 12px 40px;
     }
@@ -56,7 +58,7 @@
     flex-direction: column;
     gap: 64px;
     
-    @media #{$small-and-down} {
+    @media #{variables.$small-and-down} {
         gap: 48px;
     }
 }
@@ -83,7 +85,7 @@
         height: 2px;
         background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
         
-        @media #{$small-and-down} {
+        @media #{variables.$small-and-down} {
             top: -25px;
         }
     }
@@ -104,7 +106,7 @@
         .entry-caption {
             padding: 24px 28px;
             
-            @media #{$small-and-down} {
+            @media #{variables.$small-and-down} {
                 padding: 20px 18px;
             }
         }
@@ -155,7 +157,7 @@
         .entry-photo {
             aspect-ratio: 4 / 3;
             
-            @media #{$small-and-down} {
+            @media #{variables.$small-and-down} {
                 aspect-ratio: 3 / 2;
             }
         }
@@ -168,7 +170,7 @@
         .entry-photo {
             aspect-ratio: 1;
             
-            @media #{$small-and-down} {
+            @media #{variables.$small-and-down} {
                 aspect-ratio: 4 / 5;
             }
         }
@@ -188,7 +190,7 @@
             aspect-ratio: 4 / 3;
         }
         
-        @media #{$small-and-down} {
+        @media #{variables.$small-and-down} {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: auto auto;
             
@@ -212,7 +214,7 @@
         .entry-photo {
             aspect-ratio: 4 / 3;
             
-            @media #{$small-and-down} {
+            @media #{variables.$small-and-down} {
                 aspect-ratio: 1;
             }
         }
@@ -224,20 +226,20 @@
     word-wrap: break-word;
     overflow-wrap: break-word;
     
-    @media #{$small-and-down} {
+    @media #{variables.$small-and-down} {
         padding: 16px 18px 20px;
     }
     
     p {
         margin: 0;
-        font-family: $merriweather-serif;
+        font-family: variables.$merriweather-serif;
         font-size: 1.7rem;
         line-height: 1.6;
         color: #34495e;
         word-wrap: break-word;
         overflow-wrap: break-word;
         
-        @media #{$small-and-down} {
+        @media #{variables.$small-and-down} {
             font-size: 1.5rem;
         }
     }
@@ -259,7 +261,7 @@
         0 2px 8px rgba(0, 0, 0, 0.04),
         0 8px 24px rgba(0, 0, 0, 0.06);
     
-    @media #{$small-and-down} {
+    @media #{variables.$small-and-down} {
         padding: 24px 18px;
         border-radius: 12px;
     }
@@ -347,11 +349,11 @@
         justify-content: center;
         font-size: 2rem;
         font-weight: 600;
-        font-family: $open-sans-sans-serif;
+        font-family: variables.$open-sans-sans-serif;
     }
     
     .photo-diary-preview-caption {
-        font-family: $merriweather-serif;
+        font-family: variables.$merriweather-serif;
         color: #5d686f;
         font-size: 1.5rem;
         margin: 0 0 12px;

@@ -1,3 +1,6 @@
+@use "sass:map";
+@use "../utils/variables";
+
 // Text alignment
 .text-left {
     text-align: left !important;
@@ -34,27 +37,27 @@
 
 // Text size
 .text-xsmall {
-    font-size: map-get($font-size, xsmall) !important;
+    font-size: map.get(variables.$font-size, xsmall) !important;
 }
 
 .text-small {
-    font-size: map-get($font-size, small) !important;
+    font-size: map.get(variables.$font-size, small) !important;
 }
 
 .text-medium {
-    font-size: map-get($font-size, medium) !important;
+    font-size: map.get(variables.$font-size, medium) !important;
 }
 
 .text-base {
-    font-size: $font-size-base !important;
+    font-size: variables.$font-size-base !important;
 }
 
 .text-large {
-    font-size: map-get($font-size, large) !important;
+    font-size: map.get(variables.$font-size, large) !important;
 }
 
 .text-xlarge {
-    font-size: map-get($font-size, xlarge) !important;
+    font-size: map.get(variables.$font-size, xlarge) !important;
 }
 
 // Text style
@@ -86,17 +89,17 @@
 
 // Text coloration
 .text-color-base {
-    color: map-get($colors, base) !important;
+    color: map.get(variables.$colors, base) !important;
 }
 
 .text-color-light {
-    color: map-get($colors, light) !important;
+    color: map.get(variables.$colors, light) !important;
 }
 
 .text-color-link {
-    color: map-get($colors, link) !important;
+    color: map.get(variables.$colors, link) !important;
 }
 
 .font-merryweather {
-    font-family: $merriweather-serif;
+    font-family: variables.$merriweather-serif;
 }

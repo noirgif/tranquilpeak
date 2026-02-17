@@ -1,3 +1,8 @@
+@use "sass:color";
+@use "sass:map";
+@use "../utils/mixins/button";
+@use "../utils/variables";
+
 .btn {
     width:          auto;
     height:         auto;
@@ -5,8 +10,8 @@
     border-radius:  3px;
     padding:        8px 15px;
     margin:         0;
-    letter-spacing: $letter-spacing-base;
-    font-size:      $font-size-base;
+    letter-spacing: variables.$letter-spacing-base;
+    font-size:      variables.$font-size-base;
     cursor:         pointer;
 
     &:hover,
@@ -19,34 +24,34 @@
 // Disabled button
 .btn--disabled,
 .btn--disabled:hover {
-    color:           lighten(map-get($colors, light), 10) !important;
-    border:          1px solid lighten(map-get($colors, light), 10);
+    color:           color.adjust(map.get(variables.$colors, light), $lightness: 10%) !important;
+    border:          1px solid color.adjust(map.get(variables.$colors, light), $lightness: 10%);
     cursor:          not-allowed;
     text-decoration: none;
 }
 
 // Color variant
 .btn--default {
-    @include button-color-variant(map-get($colors, light));
+    @include button.button-color-variant(map.get(variables.$colors, light));
 }
 
 .btn--success {
-    @include button-color-variant(map-get($colors, success));
+    @include button.button-color-variant(map.get(variables.$colors, success));
 }
 
 .btn--primary {
-    @include button-color-variant(map-get($colors, primary));
+    @include button.button-color-variant(map.get(variables.$colors, primary));
 }
 
 .btn--danger {
-    @include button-color-variant(map-get($colors, danger));
+    @include button.button-color-variant(map.get(variables.$colors, danger));
 }
 
 // Size variant
 .btn--medium {
-    @include button-size-variant(map-get($font-size, medium), 8px 15px);
+    @include button.button-size-variant(map.get(variables.$font-size, medium), 8px 15px);
 }
 
 .btn--small {
-    @include button-size-variant(map-get($font-size, small), 8px 15px);
+    @include button.button-size-variant(map.get(variables.$font-size, small), 8px 15px);
 }

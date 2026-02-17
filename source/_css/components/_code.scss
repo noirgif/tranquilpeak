@@ -1,8 +1,11 @@
+@use "sass:map";
+@use "../utils/variables";
+
 // Highlight code block
 figure.highlight,
 .codeblock {
     margin:         10px 0;
-    line-height:    map-get($highlight, line-height);
+    line-height:    map.get(variables.$highlight, line-height);
     padding-top:    15px;
     padding-bottom: 15px;
     overflow:       hidden;
@@ -18,7 +21,7 @@ figure.highlight,
     .code,
     .tag {
         background-color: inherit;
-        font-family:      #{map-get($font-families, 'highlight')};
+        font-family:      #{map.get(variables.$font-families, 'highlight')};
         border:           none;
         padding:          0;
         margin:           0;
@@ -49,7 +52,7 @@ figure.highlight,
 
     // Gutter which contains line numbers
     .gutter {
-        border-right: map-get($highlight, border);
+        border-right: map.get(variables.$highlight, border);
         padding:      0.3em 15px;
     }
     // Code container
@@ -58,15 +61,15 @@ figure.highlight,
         width:   100%;
 
         pre {
-            max-width:  calc(#{map-get($main-content, 'max-width')} - 50px);
+            max-width:  calc(#{map.get(variables.$main-content, 'max-width')} - 50px);
             overflow-x: auto;
             overflow-y: hidden;
         }
     }
     // All lines in gutter and code container
     .line {
-        height:    map-get($highlight, line-height);
-        font-size: map-get($highlight, font-size);
+        height:    map.get(variables.$highlight, line-height);
+        font-size: map.get(variables.$highlight, font-size);
     }
 }
 
@@ -100,7 +103,7 @@ figure.highlight,
 .gist {
     .line,
     .line-number {
-        font-family: map-get($font-families, 'highlight');
+        font-family: map.get(variables.$font-families, 'highlight');
         font-size:   1em;
         margin:      0 0 5px 0;
     }

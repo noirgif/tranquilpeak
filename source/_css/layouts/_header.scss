@@ -1,15 +1,21 @@
+@use "sass:color";
+@use "sass:map";
+@use "../utils/mixins/header";
+@use "../utils/mixins/prefix";
+@use "../utils/variables";
+
 #header {
     display:                     block;
     width:                       100%;
-    height:                      map-get($header, height);
-    background:                  map-get($header, background);
+    height:                      map.get(variables.$header, height);
+    background:                  map.get(variables.$header, background);
     position:                    fixed;
     top:                         0;
-    border:                      map-get($header, border);
-    color:                       map-get($header, color);
+    border:                      map.get(variables.$header, border);
+    color:                       map.get(variables.$header, color);
     // used to animate the header on small screen with javascript
     //@include prefix(transition, top 0.25s ease-in-out, 'webkit' 'moz' 'ms' 'o');
-    z-index:                     map-get($z-indexes, l-header);
+    z-index:                     map.get(variables.$z-indexes, l-header);
     // Sidebar animation
     // Transition style (push)
     transition:                  transform .25s ease-in-out;
@@ -33,7 +39,7 @@
         display:  block;
         width:    30px;
         height:   30px;
-        color:    map-get($header, color);
+        color:    map.get(variables.$header, color);
 
         .header-picture {
             display:       block;
@@ -47,28 +53,28 @@
         // vertical center
         top:      12.5px;
         right:    20px;
-        color:    map-get($header, color);
+        color:    map.get(variables.$header, color);
     }
     .header-title {
         text-align:  center;
-        font-size:   $font-size-base;
+        font-size:   variables.$font-size-base;
         line-height: 55px;
         margin:      0;
 
         .header-title-link {
-            color:       map-get($header, color);
+            color:       map.get(variables.$header, color);
             font-weight: normal;
 
             &:hover,
             &:active {
-                color:           darken(map-get($header, color), 10);
+                color:           color.adjust(map.get(variables.$header, color), $lightness: -10%);
                 text-decoration: none;
             }
         }
     }
     // Class used to swipe to the top the header on small screen when the user scroll down
     &.header-up {
-        @include prefix(transform, translate3d(0, -#{map-get($header, height)}, 0), 'webkit' 'moz');
+        @include prefix.prefix(transform, translate3d(0, -#{map.get(variables.$header, height)}, 0), 'webkit' 'moz');
     }
 
     // Push the header from the size of the large sidebar
@@ -76,17 +82,17 @@
     &[data-behavior="2"],
     &[data-behavior="4"],
     &[data-behavior="5"] {
-        @include header-pushed-lg;
+        @include header.header-pushed-lg;
     }
 
     // Push the header from the size of the medium sidebar
     &[data-behavior="3"],
     &[data-behavior="6"] {
-        @include header-pushed-md;
+        @include header.header-pushed-md;
     }
 }
 
-@media #{$medium-and-up} {
+@media #{variables.$medium-and-up} {
     #header {
         // Hide header
         &[data-behavior="1"],
@@ -98,15 +104,15 @@
 }
 
 // Push the header from the size of the extra large sidebar
-@media #{$xlarge-and-up} {
+@media #{variables.$xlarge-and-up} {
     #header {
         &[data-behavior="1"],
         &[data-behavior="4"] {
-            @include header-pushed-xlg;
+            @include header.header-pushed-xlg;
         }
         &[data-behavior="2"],
         &[data-behavior="5"] {
-            @include header-pushed-lg;
+            @include header.header-pushed-lg;
         }
     }
 }

@@ -1,25 +1,31 @@
+@use "sass:color";
+@use "sass:map";
+@use "../utils/mixins/prefix";
+@use "../utils/mixins/sidebar";
+@use "../utils/variables";
+
 // Global CSS rules for all screen size
 #sidebar {
-    font-family:        map-get($font-families, 'sidebar');
+    font-family:        map.get(variables.$font-families, 'sidebar');
     height:             100%;
     position:           fixed;
     top:                0;
-    background:         map-get($sidebar, background);
+    background:         map.get(variables.$sidebar, background);
     overflow:           auto;
-    z-index:            map-get($z-indexes, l-sidebar);
+    z-index:            map.get(variables.$z-indexes, l-sidebar);
     // Sidebar animation
     // Transition style (push)
     transition:         transform .25s ease-in-out;
     -webkit-transition: -webkit-transform .25s ease-in-out;
     // Improve smoothing of the font by adding subpixel in Safari
-    @include prefix(font-smoothing, antialiased, 'webkit');
+    @include prefix.prefix(font-smoothing, antialiased, 'webkit');
 
     .sidebar-container {
         overflow: auto;
     }
     // Author information
     .sidebar-profile {
-        color:         map-get($sidebar, color);
+        color:         map.get(variables.$sidebar, color);
         text-align:    center;
         padding-top:   18px;
         margin-bottom: 15px;
@@ -30,7 +36,7 @@
         }
         .sidebar-profile-name {
             font-size: 1.1em;
-            color:     map-get($sidebar, color);
+            color:     map.get(variables.$sidebar, color);
         }
     }
     // Sidebar's buttons
@@ -46,14 +52,14 @@
             line-height: 45px;
 
             .sidebar-button-link {
-                color:   map-get($sidebar, color);
+                color:   map.get(variables.$sidebar, color);
                 display: block;
                 height:  100%;
 
                 &:hover,
                 &:active {
                     text-decoration: none;
-                    color:           lighten(map-get($sidebar, color), 35);
+                    color:           color.adjust(map.get(variables.$sidebar, color), $lightness: 35%);
                 }
             }
         }
@@ -66,87 +72,87 @@
 // Define sidebar behavior configured in `_config.yml` for small screen
 // On `$small-and-down` (small screen): It hide by default the sidebar
 // and with javascript located in `source/_js/_sidebar.js`, it will animate the swipe of the sidebar
-@media #{$small-and-down} {
+@media #{variables.$small-and-down} {
     #sidebar {
         &[data-behavior="1"],
         &[data-behavior="2"],
         &[data-behavior="4"],
         &[data-behavior="5"] {
-            left: -#{map-get($sidebar, lg-screen-width)};
-            @include sidebar-lg;
+            left: -#{map.get(variables.$sidebar, lg-screen-width)};
+            @include sidebar.sidebar-lg;
         }
         &[data-behavior="3"],
         &[data-behavior="6"] {
-            left: -#{map-get($sidebar, md-screen-width)};
-            @include sidebar-md;
+            left: -#{map.get(variables.$sidebar, md-screen-width)};
+            @include sidebar.sidebar-md;
         }
     }
 }
 
 // Define sidebar behavior configured in `_config.yml` for medium screen
-@media #{$medium-only} {
+@media #{variables.$medium-only} {
     #sidebar {
         &[data-behavior="1"],
         &[data-behavior="2"],
         &[data-behavior="3"] {
-            @include sidebar-md;
+            @include sidebar.sidebar-md;
         }
         &[data-behavior="4"],
         &[data-behavior="5"] {
-            left: -#{map-get($sidebar, lg-screen-width)};
-            @include sidebar-lg;
+            left: -#{map.get(variables.$sidebar, lg-screen-width)};
+            @include sidebar.sidebar-lg;
         }
         &[data-behavior="6"] {
-            left: -#{map-get($sidebar, md-screen-width)};
-            @include sidebar-md;
+            left: -#{map.get(variables.$sidebar, md-screen-width)};
+            @include sidebar.sidebar-md;
         }
     }
 }
 
 // Define sidebar behavior configured in `_config.yml` for large screen
-@media #{$large-only} {
+@media #{variables.$large-only} {
     #sidebar {
         &[data-behavior="1"],
         &[data-behavior="2"] {
-            @include sidebar-lg;
+            @include sidebar.sidebar-lg;
         }
         &[data-behavior="3"] {
-            @include sidebar-md;
+            @include sidebar.sidebar-md;
         }
         &[data-behavior="4"],
         &[data-behavior="5"] {
-            left: -#{map-get($sidebar, lg-screen-width)};
-            @include sidebar-lg;
+            left: -#{map.get(variables.$sidebar, lg-screen-width)};
+            @include sidebar.sidebar-lg;
         }
         &[data-behavior="6"] {
-            left: -#{map-get($sidebar, md-screen-width)};
-            @include sidebar-md;
+            left: -#{map.get(variables.$sidebar, md-screen-width)};
+            @include sidebar.sidebar-md;
         }
     }
 }
 
-@media #{$xlarge-and-up} {
+@media #{variables.$xlarge-and-up} {
     #sidebar {
         &[data-behavior="1"] {
-            @include sidebar-xlg;
+            @include sidebar.sidebar-xlg;
         }
         &[data-behavior="2"] {
-            @include sidebar-lg;
+            @include sidebar.sidebar-lg;
         }
         &[data-behavior="3"] {
-            @include sidebar-md;
+            @include sidebar.sidebar-md;
         }
         &[data-behavior="4"] {
-            left: -#{map-get($sidebar, xlg-screen-width)};
-            @include sidebar-xlg;
+            left: -#{map.get(variables.$sidebar, xlg-screen-width)};
+            @include sidebar.sidebar-xlg;
         }
         &[data-behavior="5"] {
-            left: -#{map-get($sidebar, lg-screen-width)};
-            @include sidebar-lg;
+            left: -#{map.get(variables.$sidebar, lg-screen-width)};
+            @include sidebar.sidebar-lg;
         }
         &[data-behavior="6"] {
-            left: -#{map-get($sidebar, md-screen-width)};
-            @include sidebar-md;
+            left: -#{map.get(variables.$sidebar, md-screen-width)};
+            @include sidebar.sidebar-md;
         }
         // hide bio in sidebar when small sidebar is enabled
         &[data-behavior="2"],
@@ -161,7 +167,7 @@
 }
 
 // display author bio only on extra large screen
-@media #{$large-and-down} {
+@media #{variables.$large-and-down} {
     #sidebar .sidebar-profile-bio {
         display: none;
     }
