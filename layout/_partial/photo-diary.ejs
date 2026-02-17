@@ -7,7 +7,7 @@
  * <!-- entry -->
  * ![](photo1.jpg)
  * ![](photo2.jpg)
- * Your caption here (up to 150 characters)
+ * Your caption here
  * <!-- /entry -->
  */
 
@@ -44,10 +44,10 @@ while ((match = entryRegex.exec(content)) !== null) {
         .replace(/<p[^>]*>|<\/p>/gi, '')           // Remove p tags
         .replace(/<[^>]*>/g, '')                    // Remove other HTML tags
         .replace(/\n+/g, ' ')                       // Collapse newlines
-        .trim()
-        .substring(0, 150);
+        .trim();
     
-    if (photos.length > 0) {
+    // Allow entries with photos, text, or both
+    if (photos.length > 0 || caption) {
         entries.push({ photos: photos, caption: caption });
     }
 }
@@ -75,21 +75,23 @@ while ((match = entryRegex.exec(content)) !== null) {
         <% if (entries.length > 0) { %>
             <div class="photo-diary-entries">
                 <% entries.forEach(function(entry, index) { %>
-                    <div class="photo-diary-entry" data-entry-index="<%= index %>">
-                        <div class="entry-photos photos-<%= Math.min(entry.photos.length, 4) %>">
-                            <% var photos = entry.photos.slice(0, 4); %>
-                            <% photos.forEach(function(photo, photoIndex) { %>
-                                <div class="entry-photo">
-                                    <a href="<%- url_for(photo.src) %>" class="photo-link" data-fancybox="entry-<%= index %>">
-                                        <img 
-                                            src="<%- url_for(photo.src) %>" 
-                                            alt="<%= photo.alt %>"
-                                            loading="lazy"
-                                        />
-                                    </a>
-                                </div>
-                            <% }); %>
-                        </div>
+                    <div class="photo-diary-entry <%= entry.photos.length === 0 ? 'text-only' : '' %>" data-entry-index="<%= index %>">
+                        <% if (entry.photos.length > 0) { %>
+                            <div class="entry-photos photos-<%= Math.min(entry.photos.length, 4) %>">
+                                <% var photos = entry.photos.slice(0, 4); %>
+                                <% photos.forEach(function(photo, photoIndex) { %>
+                                    <div class="entry-photo">
+                                        <a href="<%- url_for(photo.src) %>" class="photo-link" data-fancybox="entry-<%= index %>">
+                                            <img 
+                                                src="<%- url_for(photo.src) %>" 
+                                                alt="<%= photo.alt %>"
+                                                loading="lazy"
+                                            />
+                                        </a>
+                                    </div>
+                                <% }); %>
+                            </div>
+                        <% } %>
                         <% if (entry.caption) { %>
                             <div class="entry-caption">
                                 <p><%= entry.caption %></p>

@@ -16184,6 +16184,14 @@ a.tag--small,
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 12px 32px rgba(0, 0, 0, 0.1);
 }
+.photo-diary-entry.text-only .entry-caption {
+  padding: 24px 28px;
+}
+@media only screen and (max-width : 767px) {
+  .photo-diary-entry.text-only .entry-caption {
+    padding: 20px 18px;
+  }
+}
 
 .entry-photos {
   display: grid;
@@ -16278,6 +16286,8 @@ a.tag--small,
 
 .entry-caption {
   padding: 20px 24px 24px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 @media only screen and (max-width : 767px) {
   .entry-caption {
@@ -16290,6 +16300,8 @@ a.tag--small,
   font-size: 1.7rem;
   line-height: 1.6;
   color: #34495e;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 @media only screen and (max-width : 767px) {
   .entry-caption p {
