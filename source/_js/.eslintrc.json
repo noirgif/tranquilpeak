@@ -2,7 +2,8 @@
     "globals": {
         "jQuery": false,
         "moment": false,
-        "algoliaIndex": false
+        "algoliaClient": false,
+        "algoliaIndexName": false
     },
     "env": {
         "browser": true

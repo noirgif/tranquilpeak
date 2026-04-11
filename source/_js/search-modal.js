@@ -14,7 +14,8 @@
     this.$results = this.$searchModal.find('.results');
     this.$noResults = this.$searchModal.find('.no-result');
     this.$resultsCount = this.$searchModal.find('.results-count');
-    this.algolia = algoliaIndex;
+    this.algoliaClient = algoliaClient;
+    this.algoliaIndexName = algoliaIndexName;
   };
 
   SearchModal.prototype = {
@@ -26,9 +27,19 @@
       var self = this;
 
       // open modal when open button is clicked
-      self.$openButton.on("click", function() {
+      self.$openButton.on("click", function(e) {
+        e.preventDefault();
         self.open();
       });
+
+      // deep link: /#search opens the modal (e.g. sidebar uses href="#search")
+      function openIfSearchHash() {
+        if (window.location.hash === '#search') {
+          self.open();
+        }
+      }
+      $(window).on('hashchange', openIfSearchHash);
+      openIfSearchHash();
 
       // open modal when `s` button is pressed
       $(document).on("keyup", function(event) {
@@ -85,6 +96,13 @@
      * @returns {void}
      */
     close: function() {
+      if (window.location.hash === '#search') {
+        history.replaceState(
+          null,
+          document.title,
+          window.location.pathname + window.location.search
+        );
+      }
       this.hideSearchModal();
       this.hideOverlay();
       this.$searchInput.trigger("blur");
@@ -97,9 +115,12 @@
      */
     search: function(search) {
       var self = this;
-      this.algolia.search(search).then(function(content) {
-          self.showResults(content.hits);
-          self.showResultsCount(content.nbHits);
+      this.algoliaClient.searchSingleIndex({
+        indexName: this.algoliaIndexName,
+        searchParams: {query: search || ''},
+      }).then(function(content) {
+        self.showResults(content.hits);
+        self.showResultsCount(content.nbHits);
       });
     },
 
@@ -204,7 +225,8 @@
 
   jQuery(function() {
     // launch feature only if there is an Algolia index available
-    if (typeof algoliaIndex !== 'undefined') {
+    if (typeof algoliaClient !== 'undefined' &&
+        typeof algoliaIndexName !== 'undefined') {
       var searchModal = new SearchModal();
       searchModal.run();
     }

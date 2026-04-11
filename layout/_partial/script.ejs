@@ -1,5 +1,5 @@
 <!--SCRIPTS-->
-<%- js('assets/js/script-9qqxkzhyxbsyp3xbuiumjadqqwwr9c0ksosixah9bvl5cnqlimy2wgmjzzic.min.js') %>
+<%- js('assets/js/script-tspuerxnablcfmjxzgznb27hpwhitlvesch5yrfa44cfnp7bbj1ku2wyayqe.min.js') %>
 <!--SCRIPTS END-->
 
 <% if (post.comments) { %>
@@ -59,7 +59,10 @@
     <%- js('assets/js/moment-with-locales.js') %>
     <%- js('assets/js/algoliasearch.js') %>
     <script>
-      var algoliaClient = algoliasearch('<%= config.algolia.appId %>', '<%= config.algolia.apiKey %>');
-      var algoliaIndex = algoliaClient.initIndex('<%= config.algolia.indexName %>');
+      var algoliaClient = window.algoliasearch.algoliasearch(
+        '<%= config.algolia.appId %>',
+        '<%= config.algolia.apiKey %>'
+      );
+      var algoliaIndexName = '<%= config.algolia.indexName %>';
     </script>
 <% } %>

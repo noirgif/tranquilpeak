@@ -15,7 +15,7 @@ importers:
         specifier: '*'
         version: 7.1.0
       algoliasearch:
-        specifier: '*'
+        specifier: ^5.46.0
         version: 5.46.2
       gitment:
         specifier: '*'
